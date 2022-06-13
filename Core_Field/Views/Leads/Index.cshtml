@@ -1,0 +1,537 @@
+﻿@model IEnumerable<DBCon.Leads>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.12.0/css/dataTables.bootstrap5.min.css" />
+    <link href="~/Scripts/free-jqGrid/plugins/css/ui.multiselect.css" rel="stylesheet" />
+    <!-- import bootstrap cdn-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+          integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+          crossorigin="anonymous">
+    <!-- import jquery cdn -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+            crossorigin="anonymous">
+    </script>
+    <!-- import popper.js cdn -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+            integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+            crossorigin="anonymous">
+    </script>
+    <!-- import javascript cdn -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+            integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+            crossorigin="anonymous">
+    </script>
+    <script src="~/Scripts/jquery-3.4.1.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.12.0/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.12.0/js/dataTables.bootstrap5.min.js"></script> <!-- CSS stylesheet -->
+    <style type="text/css">
+        body {
+            background-image: url('../../Images/header-tile.png');
+            font-family: "Open Sans", sans-serif;
+            font-size: 13px !important;
+            width: 99%
+        }
+
+
+        .nav-link {
+            border-radius: 0px !important;
+        }
+
+            .nav-link small {
+                font-size: 10px;
+                color: rgb(90, 89, 89);
+            }
+
+            .nav-link:hover {
+                background-color: #52525240 !important
+            }
+
+            .nav-link .fa {
+                transition: all 1s;
+                font-size: 35px;
+                color: rgb(90, 89, 89);
+            }
+
+        label {
+            color: blue;
+            font-size: 15px
+        }
+    </style>
+</head>
+<BODY>
+    <nav class="navbar navbar-expand-lg p-0 " style="background-color: #388ED9;width:101% ">
+        <a class="navbar-brand border-right " href="#">
+
+
+            <img src="~/Images/nav-logo (1).png" class="mr-2" width="90">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto" style="font-size:13px">
+                <li class="nav-item ">
+                    <a class="nav-link border-right text-white " href="~/Leads/Index"><span class="mr-2">Leads</span></a>
+                </li>
+                <li class="nav-item border-right px-2">
+                    <a class="nav-link   text-white" href="~/Opp/Index">Opportunities</a>
+                </li>
+                <li class="nav-item border-right px-2">
+                    <a class="nav-link   text-white" href="#">Jobs</a>
+                </li>
+                <li class="nav-item dropdown  border-right px-2">
+                    <a class="nav-link dropdown-toggle text-white" href="#" id="navbardrop" data-toggle="dropdown">
+                        Accounting
+                    </a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="#">Link 1</a>
+                        <a class="dropdown-item" href="#">Link 2</a>
+                        <a class="dropdown-item" href="#">Link 3</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown  border-right px-2">
+                    <a class="nav-link dropdown-toggle text-white" href="#" id="navbardrop" data-toggle="dropdown">
+                        Customers
+                    </a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="#">Link 1</a>
+                        <a class="dropdown-item" href="#">Link 2</a>
+                        <a class="dropdown-item" href="#">Link 3</a>
+                    </div>
+                </li>
+
+                <li class="nav-item dropdown  border-right px-2">
+                    <a class="nav-link dropdown-toggle text-white" href="#" id="navbardrop" data-toggle="dropdown">
+                        Inventory
+                    </a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="#">Link 1</a>
+                        <a class="dropdown-item" href="#">Link 2</a>
+                        <a class="dropdown-item" href="#">Link 3</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown  border-right px-2">
+                    <a class="nav-link dropdown-toggle text-white" href="#" id="navbardrop" data-toggle="dropdown">
+                        Dispatcher
+                    </a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="#">Link 1</a>
+                        <a class="dropdown-item" href="#">Link 2</a>
+                        <a class="dropdown-item" href="#">Link 3</a>
+                    </div>
+                </li>
+            </ul>
+            <form class="form-inline ">
+                <label class="nav-item dropdown ">
+
+                    <a class="nav-link dropdown-toggle text-white" href="#" id="navbardrop" data-toggle="dropdown">
+
+                    </a><span class="text-white mr-3">ABINGTON</span>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="#">Link 1</a>
+                        <a class="dropdown-item" href="#">Link 2</a>
+                        <a class="dropdown-item" href="#">Link 3</a>
+                    </div>
+                </label>
+                <input class="pr-5 p-1 px-2" type="search" placeholder="Search anything..." style="border-radius: 40px;border: none;">
+                <a href=""><i class='fa fa-bell-o text-white ml-4'></i></a>
+                <a href="/Home/Logout">
+
+                    <img src="~/Images/blank-user-tiny.jpg" style="border-radius: 50px;width:65%" class="ml-3">
+                </a>
+                <a href="" class="text-white mx-2">Depigaa SV</a>
+            </form>
+        </div>
+    </nav>
+    <!-- h-100 takes the full height of the body-->
+    <div class="row">
+        <div class=" col-lg-1">
+
+
+
+            <div class=" d-flex flex-column flex-shrink-0  h-100" style="width: 100px;background-color: #EEE">
+                <ul class="nav nav-pills nav-flush flex-column mb-auto text-center ">
+                    <li class="nav-item"> <a href="#" class="nav-link mt-3 py-3" style="transition:all 0.5s;width:100px;display:flex;flex-direction:column"> <i class="fa fa-check-square-o "></i> <small>Tasks</small> </a> </li>
+                    <li> <a href="#" class="nav-link py-3"> <i class="fa fa-calendar "></i> <small>Calender</small> </a> </li>
+                    <li> <a href="#" class="nav-link py-3"> <i class="fa fa-bar-chart "></i> <small>Reports</small> </a> </li>
+                    <li> <a href="#" class="nav-link py-3" style="transition:all 0.5s;width:100px;display:flex;flex-direction:column"> <i class="fa fa-users "></i> <small class="mt-1">Users</small> </a> </li>
+                    <li> <a href="#" class="nav-link py-3"> <i class="fa fa-gear "></i> <small>Settings</small> </a> </li>
+                    <li> <a href="#" class="nav-link py-3"> <i class="fa fa-question-circle "></i> <small>Support</small> </a> </li>
+
+                    <li> <a href="#" class="nav-link py-3" style="transition:all 0.5s;width:100px;display:flex;flex-direction:column"> <i class="fa fa-dashboard "></i> <small>Super Admin</small> </a> </li>
+
+                </ul>
+
+            </div>
+        </div>
+        <!--Contains the main content
+        of the webpage-->
+
+
+
+
+        <div class=" col-8 mb-5  " style="background-color: white; border-right: 1px solid lightgray">
+
+            <div class="row ">
+                <div class=" col-12 py-4  " style="background-image: url('../../Images/tile.png'); border-bottom: 1px solid lightgray ">
+                    <span style="font-size: 30px; color: #2a2a2a;">Leads</span>
+                    <div class=" float-end ">
+                        <button type="submit" class="btn  text-white btn-warning ">View Converted</button>
+                        <button type="submit" class="btn text-white btn-warning ">View Archieved</button>
+                        <button type="submit" class="btn text-white btn-success ">Add Lead</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row p-3 ">
+                <div class="col-12 col-lg-3 py-4 pb-5 " style=" background-image: url('../../Images/tile.png'); border: 1px solid #DDD">
+                    <input class="w-100 p-1 pl-2" type="text" placeholder="Search leads..." style="font-size:15px;" disabled>
+                    <select class="form-select my-3" id="sel1" name="sellist1" style="font-size:14px">
+                        <option>Select an action..</option>
+                        <option>2</option>
+                    </select>
+                    <select class="form-select dropdown-toggle" id="sel1" name="sellist1" style="font-size:14px">
+                        <option>Select a type...</option>
+                        <option>2</option>
+                    </select>
+                    <select class="form-select my-3" id="sel1" name="sellist1" style="font-size:14px">
+                        <option>select a status...</option>
+                        <option>2</option>
+                    </select>
+                    <select class="form-select " id="sel1" name="sellist1" style="font-size:14px">
+                        <option>Selelct a sales person...</option>
+                        <option>2</option>
+                    </select>
+                    <div class="form-check my-3">
+                        <input type="checkbox" class="form-check-input">
+                        <label class="form-check-label " style="font-size:13px;margin-top:3px">Expired</label>
+                    </div>
+                    <button type="submit" class="btn btn-sm text-black" style="background: #eee; width: 55%"><i class="fa fa-download"></i> Export</button>
+                    <button type="submit" class="btn btn-sm text-white  " style="background: #368ee0; width: 43%">Filter</button>
+                </div>
+                <div class="col-12 col-lg border ml-2">
+
+                </div>
+            </div>
+
+            <div class=" border row mb-2 mx-1 ">
+
+                <div class="  col-6  p-3   text-center " style="background-color: #EEE;    color: #AAA;font-weight: bold; border-left:20px solid white">
+                    <span style="text-align: center;font-size: 16px;background: #ddd; padding: 4px 10px;color: #888;">1</span> Consumer
+                </div>
+                <div class="col-6 p-3  text-center  border-left" style="background-color: #EEE  ;  color: #AAA;font-weight: bold;">
+                    <span style="text-align: center;font-size: 16px;background: #ddd;padding: 4px 10px;color: #888;">11</span> Business
+                </div>
+
+            </div>
+
+            <div class="border  row mb-4 mx-1">
+                <div class="col-4 p-3   text-center " style="background-color: #EEE;    color: #AAA; font-weight: bold;border-left:20px solid white">
+                    <span style="text-align: center;font-size: 16px;background: #ddd;padding: 4px 10px;color: #888;">2</span> Quote
+                </div>
+                <div class="col-4 p-3   text-center  border-left" style="background-color: #EEE;    color: #AAA;font-weight: bold;">
+                    <span style="text-align: center;font-size: 16px;background: #ddd; padding: 4px 10px;
+        color: #888;">2</span> Follow up
+                </div>
+                <div class="col-4 p-3   text-center  border-left" style="background-color: #EEE;    color: #AAA; font-weight: bold;">
+                    <span style="text-align: center;font-size: 16px; background: #ddd;padding: 4px 10px;color: #888;">0</span> Blueprints
+                </div>
+            </div>
+
+
+            @* <div class="row">
+                    <div class="col-4 ml-2 ">
+                        Show
+                        <select style="width: 60%; border: 1px solid #ccc;" id="maxRows" name="sellist1" class="p-1">
+                            <option>2</option>
+                            <option>3</option>
+                            <option>7</option>
+
+                        </select>
+                        entries
+                    </div>
+                    <div class="col text-end mr-1">
+                        <label>Search:</label>
+                        <input type="text" id="myInput" placeholder="Search here..." style="background: #f9f9f9; border: 1px solid #AAA ">
+                    </div>
+                </div>*@
+            <div class="row mt-3 ">
+                <table class=" table table-bordered table-data" id="example1">
+                    <thead>
+                        <tr class="table-secondary ">
+
+                            <th>Name</th>
+                            <th>Project Name</th>
+                            <th>Status</th>
+                            <th>Added</th>
+                            <th>Type</th>
+                            <th>Contact</th>
+                            <th>Action</th>
+                            <th>Assignee</th>
+                            <th>Bid Date</th>
+
+                            <th>Operation</th>
+                        </tr>
+                    </thead>
+                    <tbody id="myTable" style="border:none">
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+
+                                <td style=" color: #368ee0;">
+                                    <a href="~/Leads/NewPage?Id=@Html.DisplayFor(modelItem => item.Id)"> @Html.DisplayFor(modelItem => item.Name)</a>
+                                </td>
+                                <td style="color: #368ee0;">
+                                    @Html.DisplayFor(modelItem => item.Project_Name)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Status)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Added)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Type)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Contact)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Action)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Assignee)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Bid_Date)
+                                </td>
+
+                                @Html.HiddenFor(modelItem => item.Id)
+
+                                <td>
+                                    <a onclick="GetDetails(@item.Id)">
+
+                                        <i class="fa fa-edit">   </i>
+                                    </a>
+                                    <a>
+                                        @Html.ActionLink("Delete", "Delete", new { Id = item.Id }, new { onclick = "return confirm('Are you sure to delete?')" })
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div> @* <div class="row">
+                <div class="col-3 mx-2">
+                Showing 1 to 12 of 12 entries
+                </div>
+                <div class="col mr-1">
+                <nav>
+                <ul class="pagination justify-content-end">
+                </ul>
+                </nav>
+                </div>
+                </div>
+            *@
+            <hr style="height: 0.01px;color: #EEE;">
+            <div class="text-center p-2 mb-3" style=" color: #999;font-size: 10px;">© FieldGroove, LLC 2022. All Rights Reserved.</div>
+        </div>
+    </div>
+
+
+    <div class="modal fade" id="modal-Update">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header with-border">
+                    <h2 class="box-title text-center">Update Customer</h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+
+                </div>
+                <div class="modal-body" style="height:800px">
+                    <div class="box box-primary">
+                        @using (Html.BeginForm("UpdateCustomer", "Leads", FormMethod.Post))
+                        {
+                            <div class="modal-body">
+                                <div class="col-md-8">
+                                    <div class="form-group">
+                                        <input type="hidden" id="hfId" name="Id">
+                                        <label for="exampleInputEmail1">Name :</label>
+                                        <input type="text" class="form-control" id="txtUpdateName" onkeypress="return Validatelname(event)" name="Name" placeholder="Name">
+                                        <label for="exampleInputEmail1">Project_Name :</label>
+                                        <input type="text" class="form-control" id="project" onkeypress="return Validateproject(event)" name="Project_Name">
+                                        <label for="exampleInputEmail1">Status :</label>
+                                        <input type="text" class="form-control" onkeypress="return Validatestatus(event)" id="sta" name="Status">
+                                        <label for="exampleInputEmail1">Added :</label>
+                                        <input type="text" class="form-control" id="Add" name="Added">
+
+                                        <label for="exampleInputEmail1">Type:</label>
+                                        <input type="text" class="form-control" id="Type" onkeypress="return Validatetype(event)" name="Type">
+                                        <label for="exampleInputEmail1">Contact:</label>
+                                        <input type="text" class="form-control" id="Cnt" name="Contact">
+                                        <label for="exampleInputEmail1">Action:</label>
+                                        <input type="text" class="form-control" id="Action" onkeypress="return Validateaction(event)" name="Action">
+                                        <label for="exampleInputEmail1">Assignee:</label>
+                                        <input type="text" class="form-control" id="Ass" onkeypress="return Validateassignee(event)" name="Assignee">
+                                        <label for="exampleInputEmail1">Bid_Date:</label>
+                                        <input type="text" class="form-control" id="bit" name="Bid_Date">
+
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+
+
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-primary">Update</button>
+                                <button type="button" class="btn btn-default pull-right" data-bs-dismiss="modal">Close</button>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br />
+
+
+
+
+    <script>
+        $(function () {
+            $('#example1').DataTable();
+        })
+
+        function GetDetails(Id) {
+
+            $.ajax({
+
+                url: "/Leads/EditCustomer/" + Id,
+                typr: "GET",
+                contentType: "application/json;charset=UTF-8",
+                dataType: "json",
+                success: function (response) {
+                    $('#txtUpdateName').val(response.name);
+
+                    $('#project').val(response.project_Name);
+
+                    $('#sta').val(response.status);
+
+                    $('#Add').val(response.added);
+
+                    $('#Type').val(response.type);
+
+                    $('#Cnt').val(response.contact);
+
+                    $('#Action').val(response.action);
+
+                    $('#Ass').val(response.assignee);
+
+                    $('#bit').val(response.bid_Date);
+
+                    $('#hfId').val(response.id);
+
+                    $('#modal-Update').modal('show');
+
+                },
+                error: function (response) {
+                    alert(response.responseText);
+                }
+            });
+            return false;
+        }
+        function Validatelname(e) {
+            var keyCode = e.keyCode || e.which;
+            var errorMsg = document.getElementById("txtUpdateName");
+            errorMsg.innerHTML = ""; //Regex to allow only Alphabets Numbers Dash Underscore and Space
+            var pattern = /^[A-Za-z ]/i; //Validating the textBox value against our regex pattern.
+            var isValid = pattern.test(String.fromCharCode(keyCode));
+            if (!isValid) {
+                errorMsg.innerHTML = "Invalid Attempt, only alphabets allowed";
+            } return isValid;
+        }
+        function Validateproject(e) {
+            var keyCode = e.keyCode || e.which;
+            var errorMsg = document.getElementById("project");
+            errorMsg.innerHTML = ""; //Regex to allow only Alphabets Numbers Dash Underscore and Space
+            var pattern = /^[A-Za-z0-9 ]/i; //Validating the textBox value against our regex pattern.
+            var isValid = pattern.test(String.fromCharCode(keyCode));
+            if (!isValid) {
+                errorMsg.innerHTML = "Invalid Attempt, only alphabets allowed";
+            }
+            return isValid;
+        }
+        function Validatestatus(e) {
+            var keyCode = e.keyCode || e.which;
+            var errorMsg = document.getElementById("sta");
+            errorMsg.innerHTML = ""; //Regex to allow only Alphabets Numbers Dash Underscore and Space
+            var pattern = /^[A-Za-z ]/i; //Validating the textBox value against our regex pattern.
+            var isValid = pattern.test(String.fromCharCode(keyCode));
+            if (!isValid) {
+                errorMsg.innerHTML = "Invalid Attempt, only alphabets allowed";
+            } return isValid;
+
+        }
+        function Validatetype(e) {
+            var keyCode = e.keyCode || e.which;
+            var errorMsg = document.getElementById("Type");
+            errorMsg.innerHTML = ""; //Regex to allow only Alphabets Numbers Dash Underscore and Space
+            var pattern = /^[A-Za-z ]/i; //Validating the textBox value against our regex pattern.
+            var isValid = pattern.test(String.fromCharCode(keyCode));
+            if (!isValid) {
+                errorMsg.innerHTML = "Invalid Attempt, only alphabets allowed";
+            } return isValid;
+        }
+        function Validateaction(e) {
+            var keyCode = e.keyCode || e.which;
+            var errorMsg = document.getElementById("Action");
+            errorMsg.innerHTML = ""; //Regex to allow only Alphabets Numbers Dash Underscore and Space
+            var pattern = /^[A-Za-z]/i; //Validating the textBox value against our regex pattern.
+            var isValid = pattern.test(String.fromCharCode(keyCode));
+            if (!isValid) {
+                errorMsg.innerHTML = "Invalid Attempt, only alphabets allowed";
+            } return isValid;
+        }
+        function Validateassignee(e) {
+            var keyCode = e.keyCode || e.which;
+            var errorMsg = document.getElementById("Ass");
+            errorMsg.innerHTML = ""; //Regex to allow only Alphabets Numbers Dash Underscore and Space
+            var pattern = /^[A-Za-z]/i; //Validating the textBox value against our regex pattern.
+            var isValid = pattern.test(String.fromCharCode(keyCode));
+            if (!isValid) {
+                errorMsg.innerHTML = "Invalid Attempt, only alphabets allowed";
+            } return isValid;
+        }
+
+
+    </script>
+</BODY>
+</html>
+
+
+
+
+
+
+

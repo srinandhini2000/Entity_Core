@@ -1,0 +1,202 @@
+﻿@model Core_Field.Models.Login
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>SIGNUP</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <script src="~/Scripts/pagescript/index.js"></script>
+    <style>
+        body {
+            padding: 0;
+            background-image: url('../../Images/bg.png.png');
+            font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+        }
+
+        .navbar a {
+            display: block;
+            font-size: 12px;
+            color: #13254b;
+            position: relative;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+        }
+
+            .navbar a, .navbar a:active {
+                color: #162547;
+            }
+
+        .navbar-toggler-icon {
+            background-color: rgb(7, 8, 8);
+        }
+    </style>
+</head>
+<BODY>
+    <nav class="navbar navbar-expand-lg p-4 px-5 ml-5 ">
+        <a href="#" class="navbar-brand ml-5">
+            <img src="~/Images/fg_logo.png" />
+        </a>
+        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div id="navbarCollapse" class="collapse navbar-collapse justify-content-start mr-5">
+            <div class="navbar-nav ml-auto action-buttons mr-4 pr-5">
+                <a href="#" class="nav-item nav-link mx-4">FEATURES</a>
+                <div class="nav-item dropdown">
+                    <a href="#" data-toggle="dropdown" class="nav-item nav-link dropdown-toggle ">INDUSTRIES</a>
+                    <div class="dropdown-menu">
+                        <a href="#" class="dropdown-item">Web Design</a>
+                        <a href="#" class="dropdown-item">Web Development</a>
+                        <a href="#" class="dropdown-item">Graphic Design</a>
+                        <a href="#" class="dropdown-item">Digital Marketing</a>
+                    </div>
+                </div>
+                <a href="#" class="nav-item nav-link mx-4">FAQS</a>
+                <a href="#" class="nav-item nav-link ">CONTACT US</a>
+                <a href="/UserDetails/Index" class="nav-item nav-link mx-4">SIGN UP</a>
+                <div class="nav-item dropdown mr-5 ">
+                    <a href="#" class="btn text-white px-4 " style="background-color:#254aa1;border-radius: 40px;">LOGIN</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div class="container ">
+        <!-- <div class="row " > -->
+        <div class="row justify-content-center " style="width:95%">
+            <div class="col-12 col-md-4 col-lg-4 p-4" style="background-color: #162647">
+                <h5 class="text-white mt-3 text-decoration-underline">SIGN IN</h5>
+                <form name="RegForm" onsubmit="return GEEKFORGEEKS()" method="post" asp-action="Index">
+                    <label class="text-white" style="font-size: 17px;">Email</label><br /> <input type="email" id="Email" class="w-100 my-1 p-1" onkeyup="EmailValidate()" name="Email" asp-for="Email">
+                    <div id="lblError" style="color: red"></div>
+                    <label class="text-white mt-1" style="font-size: 17px;">Password</label>
+                    <input type="password" id="Password" class="w-100 my-1 p-1" onkeyup="Validatepassword()" name="Password" asp-for="Password">
+                    <i class="bi bi-eye-slash" id="togglePassword" style="margin-left: -30px; cursor: pointer;"></i>
+                    <div id="lblpass" style="color: red"></div> <div class="mt-2">
+                        <input type="checkbox">
+                        <label class="text-white mb-4">Remember Me</label>
+                    </div> <div class="mb-5">
+                        <button type="button" class="btn py-2 px-2 " style="width: 50%; color: rgba(255, 255, 255, 0.5); border: 2px solid #2d3b58">Forgot Password?</button> <button type="submit" class="btn py-2 ml-1 text-white" onclick="next()" style="width: 47%; background-color: #E36156; border: 2px solid #E36156 ">
+                            Sign In <i class="fa fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </form>
+            </div> <div class="col-12 col-md-4 col-lg-6 p-4 " style="background-color: #f2f5f8;width:">
+                <h3 class="text-danger"> @Html.ViewData["message"]</h3>
+                <div id="message" style="color:red"></div>
+                <div id="info" style="color:red"></div>
+                <h5 class="text-danger mt-3">NEED AN ACCOUNT?</h5>
+                <p class="my-3" style="color: #162547; font-weight: 400; font-size: 17px; letter-spacing: 1px;">
+                    Create an account to start managing<br>
+                    your company. Click the "Create New Account"<br>
+                    button below to get started
+                </p>
+                <a href="~/UserDetails/Index">
+                    <button type="submit" class="btn text-white" style="background-color:#162547">
+                        Create New Account
+                    </button>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-5 ">
+        <div class="col text-center ">
+            <ul class="mini-links d-inline-flex " style="list-style-type: none; display:block ">
+                <li class="item">
+                    <a href="" style="color: #13254B; font-size: 14px; letter-spacing: 1px; font-weight: 600; ">FEATURES <span class="mx-3" style="color:gray;">|</span> </a>
+                </li>
+                <li class="item ">
+                    <a href="" style="color: #13254B; font-size: 14px; letter-spacing: 1px; font-weight: 600; ">FAQS <span class="mx-3" style="color:gray;">|</span> </a>
+                </li>
+                <li class="item ">
+                    <a href="" style="color: #13254B; font-size: 14px; letter-spacing: 1px; font-weight: 600; ">CONTACT US <span class="mx-3" style="color:gray;">|</span> </a>
+                </li>
+                <li class="item">
+                    <a href="" style="color: #13254B; font-size: 14px; letter-spacing: 1px; font-weight: 600; ">LOGIN <span class="mx-3" style="color:gray;">|</span> </a>
+                </li>
+                <li class="item ">
+                    <a href="" style="color: #13254B; font-size: 14px; letter-spacing: 1px; font-weight: 600; ">SIGN UP </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer py-5 " style="background-color:#162547;">
+        <div class="row">
+            <div class="col-1">
+            </div>
+            <div class="col-12 col-lg-6 mt-2 " style="font-size: 13px;
+font-weight: 400; color: rgba(255, 255, 255, 0.5);">
+                <img src="~/Images/logo-footer (1).jpg">
+                <div class="mt-3">Copyright © FieldGroove, LLC 2022. All Rights Reserved.</div>
+                <div class="my-2">716 Newman Springs Road, Suite 307 Lincroft, NJ 07738</div>
+                <div><a href="" class="text-danger">Privacy Policy</a></div>
+                </P>
+            </div>
+            <div class="col-12 col-lg-4 ml-5 mt-5 " style="font-size: 13px;
+font-weight: 400; color: rgba(255, 255, 255, 0.5);">
+                <div class="mt-1">We would love to show you the power of FieldGroove.To setup</div>
+                <div class="my-2">a demo or get an account setup, please contact us at</div>
+                <a href="" class="text-danger ">sales@fieldgroove.com</a>
+                or by phone at <a href="" class="text-danger">212-537-0218</a>
+                </P>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $(document).on("click", ".action-buttons .dropdown-menu", function (e) {
+            e.stopPropagation();
+        }); function next() {
+            if (document.getElementById("Firstname").value.trim() == "") {
+                document.getElementById("message").innerHTML = "* The Firstname field is required";
+            } else {
+                document.getElementById("message").innerHTML = "";
+            } if (document.getElementById("Lastname").value.trim() == "") {
+                //document.getElementById("last").innerHTML = "* The Lastname field is required"; } else {
+                document.getElementById("last").innerHTML = "";
+            }
+        } function EmailValidate() {
+            var email = document.getElementById("Email").value;
+            var lblError = document.getElementById("lblError");
+            lblError.innerHTML = "";
+            var expr = /^[_a-z0-9-]+(\.[_a-z0-9-]+)*@@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/;
+            if (!expr.test(email)) {
+                lblError.innerHTML = "Invalid Email Id";
+            }
+        }
+        function Validatepassword() {
+            var email = document.getElementById("Password").value;
+            var lblError = document.getElementById("lblpass");
+            lblError.innerHTML = "";
+            var expr = /^.*(?=.{8,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!*@@#$%^&+=]).*$/;
+            if (!expr.test(email)) {
+                lblError.innerHTML = "Invalid password Id";
+            }
+        }
+        $(document).ready(function () {
+            history.pushState(null, document.title, location.href);
+        }); const togglePassword = document.querySelector('#togglePassword');
+        const password = document.querySelector('#Password'); togglePassword.addEventListener('click', function (e) {
+            // toggle the type attribute
+            const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+            password.setAttribute('type', type);
+            // toggle the eye icon
+            this.classList.toggle('bi-eye');
+        });</script>
+</BODY>
+</html>
+

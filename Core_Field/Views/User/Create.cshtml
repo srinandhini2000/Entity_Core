@@ -1,0 +1,800 @@
+﻿@model DBCon.User
+
+@{
+    ViewData["Title"] = "Create";
+}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>SIGNUP</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+    <style>
+        body {
+            padding: 0px;
+            background-image: url('../../Images/bg.png.png');
+            background-repeat: no-repeat;
+            background-position: center;
+            font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+        }
+
+        .navbar a {
+            display: block;
+            font-size: 12px;
+            color: #13254b;
+            position: relative;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+        }
+
+        label {
+            font-size: 16px
+        }
+
+
+        .navbar a,
+        .navbar a:active {
+            color: #162547;
+        }
+
+        .navbar-toggler-icon {
+            background-color: rgb(7, 8, 8);
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg p-4 px-5 ml-5 mb-3">
+        <a href="#" class="navbar-brand ml-5">
+
+            <img src="~/Images/fg_logo.png">
+        </a>
+        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div id="navbarCollapse" class="collapse navbar-collapse justify-content-start mr-3">
+
+            <div class="navbar-nav ml-auto action-buttons mr-5 pr-5">
+                <a href="#" class="nav-item nav-link mr-4">FEATURES</a>
+                <div class="nav-item dropdown">
+                    <a href="#" data-toggle="dropdown" class="nav-item nav-link dropdown-toggle mr-4">INDUSTRIES</a>
+                    <div class="dropdown-menu">
+                        <a href="#" class="dropdown-item">Web Design</a>
+                        <a href="#" class="dropdown-item">Web Development</a>
+                        <a href="#" class="dropdown-item">Graphic Design</a>
+                        <a href="#" class="dropdown-item">Digital Marketing</a>
+                    </div>
+                </div>
+                <a href="#" class="nav-item nav-link mr-4 ">FAQS</a>
+                <a href="#" class="nav-item nav-link mr-4">CONTACT <span class="ml-1">US</span> </a>
+                <a href="~/Employee/Index" class="nav-item nav-link mr-4">LOGIN</a>
+                <div class="nav-item dropdown mr-5 ">
+                    <a href="#" class="btn text-white px-4" style="background-color:#113ca0;border-radius: 40px;">
+                        SIGN
+                        UP
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div class="card-title  text-center mb-5" style="font-size: 48px; color: #2e58af; font-weight: 300;">
+        Try FieldGroove
+        Free for 7 Days!
+    </div>
+    <div class="container ">
+        <!-- <div class="row " > -->
+        <div class="row justify-content-center " style="width:95%">
+           
+                <div class="col-12  col-md-4 col-lg-4 p-4 " id="firstDiv" style="background-color:#162547">
+
+                    <h5 class="text-white mt-3 text-decoration-underline" style="font-weight: 400">Account Info</h5>
+
+
+                    <label class="text-white">First Name*</label>
+                    <input type="text" class="w-100 mt-1 p-1" id="Firstname" onkeypress="return Validate(event)">
+
+                    <div style="color:orangered;font-size:16px;" id="Errorname"></div>
+
+                    <div class="my-2 ">
+                        <label class="text-white">Last Name*</label>
+                        <input type="text" class="w-100 mt-1 p-1" id="Lastname" onkeypress="return Validatelname(event)">
+                        @Html.ValidationMessageFor(model => model.Lastname, "", new { @class = "text-danger" })
+                        <div style="color:orangered;font-size:16px;" id="Errorlname"></div>
+                    </div>
+
+                    <div class="mb-2">
+                        <label class="text-white">Company Name*</label>
+                        <input type="text" class="w-100  mt-1 p-1" id="Companyname" onkeypress="return Validatecom(event)">
+                        <div style="color:orangered;font-size:16px;" id="Errorcom"></div>
+                    </div>
+                    <div class="mb-2">
+                        <label class="text-white">Phone*</label>
+                        <input type="tel" class="w-100  mt-1 p-1" id="Phone" maxlength="10" onkeypress="return Validatephone(event)">
+                        <div style="color:orangered;font-size:16px;" id="ErrorPhone"></div>
+                    </div>
+                    <div class="mb-2">
+                        <label class="text-white">Email*</label><br />
+                        <input type="email" class="w-100  mt-1 p-1" id="Email" onkeyup="EmailValidate();"
+                               required>
+                        <div id="lblError" style="color: red"></div>
+                        @ViewBag.Message
+                    </div>
+                    <div class="mb-2">
+                        <label class="text-white">Password*</label>
+                        <input type="password" class="w-100 mt-1 p-1" id="Password" onkeyup="Validatepassword();">
+                        <i class="bi bi-eye-slash" id="togglePassword" style="margin-left: -30px; cursor: pointer;"></i>
+                        <div style="color:orangered;font-size:16px;" id="lblpass"></div>
+                    </div>
+                    <div class="mb-2 ">
+                        <label class="text-white ">Password Again*</label>
+                        <input type="password" class="w-100  mt-1 p-1" id="Passwordagain" name="Password2">
+
+                        <div id="CheckPasswordMatch"></div>
+
+                    </div>
+                    <div class="mb-2 ">
+                        <label class="text-white mb-2">Time Zone*</label>
+                        <select class="w-100  mb-3 p-2" id="Time_Zone">
+                            <option selected value="Central Standard Time">Central Standard Time</option>
+                            <option value="Indian Standard Time">Indian Standard Time</option>
+                            <option value="Pacific Time">Pacific Time</option>
+                            <option value="3">Three</option>
+                        </select>
+                    </div>
+                    <div class="mt-3 mr-4 ">
+
+                        <button type="submit" class="btn float-end  mb-5  text-white" id="Signup"
+                                style="background-color: #E36156;width:43%">
+                            Next
+                        </button>
+
+                    </div>
+
+
+
+                </div>
+                <div class="col-12 col-lg-4  p-4 py-5" id="secondDiv" style="background-color:#162547">
+                    <h5 class="text-white mt-3 text-decoration-underline" style="font-weight: 400">
+                        Office Address <i class="fa fa-question-circle" style="font-size:15px"></i>
+                    </h5>
+                    <div class="mb-2 ">
+                        <label class="text-white">Street Address 1*</label>
+                        <input type="text" class="w-100 mt-1 p-1" id="Add1">
+                    </div>
+                    <div class="mb-2 ">
+                        <label class="text-white">Street Address 2*</label>
+                        <input type="text" class="w-100 mt-1 p-1" id="Address">
+                    </div>
+                    <div class="mb-2">
+                        <label class="text-white">City*</label><br />
+                        <input type="text" class="w-100 mt-1 p-1" pattern="[A-Za-z]{1,50}$" id="City" onkeypress="return Validatecity(event)">
+                        <div style="color:orangered;font-size:16px;" id="Errorcity"></div>
+                    </div>
+                    <div class="mb-2">
+                        <label class="text-white">State*</label><br />
+                        <input type="text" class="w-100 mt-1 p-1" pattern="[A-Za-z]{1,50}$" id="State" onkeypress="return Validatestate(event)">
+                        <div style="color:orangered;font-size:16px;" id="Errorstate"></div>
+                    </div>
+                    <div class="mb-2">
+                        <label class="text-white">Zip*</label><br />
+                        <input type="tel" class="w-100 mt-1 p-1" pattern="[0-9]{3} [0-9]{3}" id="Zip" maxlength="6" @* onkeypress="return isNumberKey(event);*@ onkeypress="return ValidateZip(event);">
+                        <div style="color:orangered;font-size:16px;" id="ErrorZip"></div>
+                    </div>
+                    <div class="mt-4 pb-5">
+
+                        <button type="submit" class="btn  py-2" id="back"
+                                style="width: 45%; float: left; background-color: #172648; border: solid 1px #2D3B58; color: rgba(255, 255, 255, 0.5);">
+                            Back
+                        </button>
+
+                        <button type="submit" class="btn text-white  ml-2 py-2" id="onsubmit" onclick="next()"
+                                style="background-color: #E36156;width:45%">
+                            Sign Up
+                        </button>
+
+                    </div>
+
+
+                </div>
+
+                <div class="col-12 col-md-4 col-lg-6  p-4 " style="background-color: #f2f5f8">
+
+                    <div style="color: orangered">
+                        <div id="message"></div>
+                        <div id="last"></div>
+                        <div id="company"></div>
+                        <div id="phone"></div>
+                        <div id="mail"></div>
+                        <div id="Pass"></div>
+                        <div id="seen"></div>
+                        <div id="mess"></div>
+                        <div id="bot"></div>
+                        <div id="ci"></div>
+                        <div id="st"></div>
+                        <div id="zi"></div>
+
+
+                    </div>
+
+
+                    <h5 class="text mt-4" style="color: orangered;">SIGN UP NOW TO START YOUR FREE TRIAL</h5>
+                    <p class="my-3" style="color: #1B3365; font-weight: 400; font-size: 15px;    font-weight: 400; letter-spacing: 1px; ">
+                        FieldGroove empowers you to manage every aspect of your <br>
+                        contracting business anytime, anywhere, and from any <br>
+                        device.Enjoy a free trial where you can experience <br>
+                        everything FieldGroove has to offer, including:
+                    </p>
+                    <ul class="list-unstyled"
+                        style="color: #1B3365; font-weight: 500; letter-spacing: 0.05em;font-size:15px ">
+                        <li class="list-item mb-3 ">
+
+                            <img src="~/Images/icon-item.png" />
+                            Managing the entire job cycle from lead creation to post-job <span class="ml-4">reporting</span>
+                        </li>
+                        <li class="list-item ">
+                            <img src="~/Images/icon-item.png" /> Monitoring pipeline and backlog numbers, in real time
+                        </li>
+                        <li class="list-item my-3">
+                            <img src="~/Images/icon-item.png" />
+                            Building estimates for your prospects to review and accept <br><span class="ml-4">via email or on the job site</span>
+                        </li>
+                        <li class="list-item ">
+                            <img src="~/Images/icon-item.png" /> Keeping close track of your team, equipment, inventory, and <br>
+                            <span class="ml-4">jobs</span>
+                        </li>
+                        <li class="list-item my-3"> <img src="~/Images/icon-item.png" /> Automating scheduling and dispatching</li>
+                        <li class="list-item"> <img src="~/Images/icon-item.png" /> Preparing work orders and load tickets with one click</li>
+
+
+                    </ul>
+                </div>
+
+
+          
+        </div>
+
+        <div class="card-footer  text-center p-5 mt-5"
+             style="background: #fff; border: #fff; font-size: 37px; color: #2e58af;">
+            Frequently Asked Questions
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-4">
+                <h6 style=" color: #2E59B0; font-weight: 700;">Will my card on file be charged?</h6>
+                <p class="py-2 border-bottom" style="font-size: 16px; color: #1A3265;">
+                    We don’t charge anything at all before or during the trial <br>
+                    period. The card on file is simply so we know you’re a<br>
+                    person, not a robot.
+                </p>
+
+            </div>
+            <div class="col-12 col-lg-4">
+                <h6 style="color: #2E59B0; font-weight: 700;">Can I cancel my free trial at any time?</h6>
+                <p class="py-2 border-bottom" style="font-size: 16px; color: #1A3265;">
+                    Absolutely. All we ask is that you give FieldGroove a shot, <br>
+                    because it is rare that we can’t improve your business!
+                </p>
+
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-4">
+                <h6 style="color: #2E59B0; font-weight: 700;">How long is my free trial?</h6>
+                <p class="py-2 border-bottom" style="font-size: 16px; color: #1A3265;">The free trial is for 7 days.</p>
+
+            </div>
+            <div class="col-12 col-lg-4">
+                <h6 style="color: #2E59B0; font-weight: 700;">Can I cancel my free trial at any time?</h6>
+                <p class="py-2 border-bottom" style="font-size: 16px; color: #1A3265;">
+                    We have several resources (documents and videos) for<br>
+                    training. The portal has a button you can click to send <br>
+                    questions, and you will be assigned a personal point of <br>
+                    contact who will be available to assist as needed.
+                </p>
+
+            </div>
+        </div>
+        <div class="row justify-content-center mb-5">
+            <div class="col-12 col-lg-4">
+                <h6 style="color: #2E59B0; font-weight: 700;">
+                    Do you have customer representatives to answer<br>
+                    questions during my trial?
+                </h6>
+                <p class="py-2" style="font-size: 16px; color: #1A3265;">
+                    We have several resources (documents and videos) for<br>
+                    training. The portal has a button you can click to send <br>
+                    questions, and you will be assigned a personal point of <br>
+                    contact who will be available to assist as needed.
+                </p>
+            </div>
+            <div class="col-12 col-lg-4">
+                <h6 style="color: #2E59B0; font-weight: 700;">Can I cancel my free trial at any time?</h6>
+                <p class="py-2" style="font-size: 16px; color: #1A3265;">
+                    Typically, you’ll find that you can’t live without us! Before the<br>
+                    end of the trial, we will be providing you with a quote for <br>
+                    continuing the subscription. We will also be working closely <br>
+                    with you toward a seamless transition. After the initial 7 days <br>
+                    trial, with your acceptance of our quote and your approval,<br>
+                    we will start charging for the monthly subscription. We will <br>
+                    provide you with all the tools necessary for on-boarding as <br>
+                    well.
+
+            </div>
+        </div>
+        <div class="row mt-4 ">
+            <div class="col text-center ">
+                <ul class="mini-links d-inline-flex " style="list-style-type:none;">
+                    <li class="item ">
+
+                        <a href="" style="color: #162547;font-size: 14px;font-weight: 500;">
+                            FEATURES <span class="mx-3">|</span>
+                        </a>
+                    </li>
+
+                    <li class="item ">
+                        <a href="" style="color: #162547;font-size: 14px;font-weight: 500;">
+                            FAQS <span class="mx-3">|</span>
+                        </a>
+                    </li>
+                    <li class="item ">
+                        <a href="" style="color: #162547;font-size: 14px;font-weight: 500;">
+                            CONTACT US <span class="mx-3">|</span>
+                        </a>
+                    </li>
+                    <li class="item">
+                        <a href="" style="color: #162547;font-size: 14px;font-weight: 500;">
+                            LOGIN <span class="mx-3">|</span>
+                        </a>
+                    </li>
+                    <li class="item ">
+                        <a href="" style="color: #162547;font-size: 14px;font-weight: 500;">SIGN UP </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer p-5  " style="background-color:#162547">
+            <div class="row">
+                <div class="col-1">
+
+                </div>
+                <div class="col-12 col-lg-6 mt-3 " style="font-size: 13px;
+          font-weight: 400; color: rgba(255, 255, 255, 0.5);">
+
+                    <img src="~/Images/logo-footer (1).jpg">
+                    <div class="mt-3">Copyright © FieldGroove, LLC 2022. All Rights Reserved.</div>
+                    <div class="my-2">716 Newman Springs Road, Suite 307 Lincroft, NJ 07738</div>
+                    <div><a href="" style="color: orangered;">Privacy Policy</a></div>
+                    </P>
+                </div>
+
+                <div class="col-12 col-lg-4 ml-5  mt-4 p-4" style="font-size: 13px;
+  font-weight: 400; color: rgba(255, 255, 255, 0.5);">
+                    <div class="mt-1">We would love to show you the power of FieldGroove.To setup</div>
+                    <div class="my-2">a demo or get an account setup, please contact us at</div>
+                    <a href="" style="color: orangered;">sales@fieldgroove.com</a>
+                    or by phone at <a href="" style="color: orangered;">212-537-0218</a>
+                    </P>
+                </div>
+            </div>
+
+        </div>
+
+
+
+
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script type="text/javascript">
+
+        const togglePassword = document.querySelector('#togglePassword');
+        const password = document.querySelector('#Password');
+        togglePassword.addEventListener('click', function (e) {
+            // toggle the type attribute
+            const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+            password.setAttribute('type', type);
+            // toggle the eye icon
+            this.classList.toggle('bi-eye');
+        });
+
+
+
+
+        $('#Password, #Passwordagain').on('keyup', function () {
+            if ($('#Password').val() == $('#Passwordagain').val()) {
+                $('#CheckPasswordMatch').html('').css('color', 'green');
+            } else
+                $('#CheckPasswordMatch').html('Not Matching').css('color', 'red');
+        });
+
+
+
+
+        function Validate(e) {
+            var keyCode = e.keyCode || e.which;
+            var errorMsg = document.getElementById("Errorname");
+            errorMsg.innerHTML = "";
+
+
+
+            //Regex to allow only Alphabets Numbers Dash Underscore and Space
+            var pattern = /^[A-Za-z]/i;
+
+
+
+            //Validating the textBox value against our regex pattern.
+            var isValid = pattern.test(String.fromCharCode(keyCode));
+            if (!isValid) {
+                errorMsg.innerHTML = "Invalid Attempt, only alphabets allowed";
+            }
+
+
+
+            return isValid;
+
+        }
+        function Validatelname(e) {
+            var keyCode = e.keyCode || e.which;
+            var errorMsg = document.getElementById("Errorlname");
+            errorMsg.innerHTML = "";
+
+
+
+            //Regex to allow only Alphabets Numbers Dash Underscore and Space
+            var pattern = /^[A-Za-z]/i;
+
+
+
+            //Validating the textBox value against our regex pattern.
+            var isValid = pattern.test(String.fromCharCode(keyCode));
+            if (!isValid) {
+                errorMsg.innerHTML = "Invalid Attempt, only alphabets allowed";
+            }
+
+
+
+            return isValid;
+
+        }
+
+        function Validatecom(e) {
+            var keyCode = e.keyCode || e.which;
+            var errorMsg = document.getElementById("Errorcom");
+            errorMsg.innerHTML = "";
+
+
+
+            //Regex to allow only Alphabets Numbers Dash Underscore and Space
+            var pattern = /^[A-Za-z]/i;
+
+
+
+            //Validating the textBox value against our regex pattern.
+            var isValid = pattern.test(String.fromCharCode(keyCode));
+            if (!isValid) {
+                errorMsg.innerHTML = "Invalid Attempt, only alphabets allowed";
+            }
+
+
+
+            return isValid;
+
+        }
+        function Validatecity(e) {
+            var keyCode = e.keyCode || e.which;
+            var errorMsg = document.getElementById("Errorcity");
+            errorMsg.innerHTML = "";
+
+
+
+            //Regex to allow only Alphabets Numbers Dash Underscore and Space
+            var pattern = /^[A-Za-z]/i;
+
+
+
+            //Validating the textBox value against our regex pattern.
+            var isValid = pattern.test(String.fromCharCode(keyCode));
+            if (!isValid) {
+                errorMsg.innerHTML = "Invalid Attempt, only alphabets allowed";
+            }
+
+
+
+            return isValid;
+
+        }
+        function Validatestate(e) {
+            var keyCode = e.keyCode || e.which;
+            var errorMsg = document.getElementById("Errorstate");
+            errorMsg.innerHTML = "";
+
+
+
+            //Regex to allow only Alphabets Numbers Dash Underscore and Space
+            var pattern = /^[A-Za-z]/i;
+
+
+
+            //Validating the textBox value against our regex pattern.
+            var isValid = pattern.test(String.fromCharCode(keyCode));
+            if (!isValid) {
+                errorMsg.innerHTML = "Invalid Attempt, only alphabets allowed";
+            }
+
+
+
+            return isValid;
+
+        }
+ @*       function Validatepassword(e) {
+            var keyCode = e.keyCode || e.which;
+            var errorMsg = document.getElementById("Errorpassword");
+            errorMsg.innerHTML = "";
+
+
+
+            //Regex to allow only Alphabets Numbers Dash Underscore and Space
+            var pattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])\w{6,}$/;
+
+
+
+            //Validating the textBox value against our regex pattern.
+            var isValid = pattern.test(String.fromCharCode(keyCode));
+            if (!isValid) {
+                errorMsg.innerHTML = "Invalid Attempt";
+            }
+
+
+
+            return isValid;
+
+        }*@
+            function EmailValidate() {
+        var email = document.getElementById("Email").value;
+        var lblError = document.getElementById("lblError");
+        lblError.innerHTML = "";
+               var expr = /^[_a-z0-9-]+(\.[_a-z0-9-]+)*@@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/;
+        if (!expr.test(email)) {
+            lblError.innerHTML = "Invalid Email Id";
+        }
+        }
+        function Validatepassword() {
+            var email = document.getElementById("Password").value;
+            var lblError = document.getElementById("lblpass");
+            lblError.innerHTML = "";
+            var expr = /^.*(?=.{8,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!*@@#$%^&+=]).*$/;
+            if (!expr.test(email)) {
+                lblError.innerHTML = "Invalid password Id";
+            }
+        }
+        $(document).on("click", ".action-buttons .dropdown-menu", function (e) {
+            e.stopPropagation();
+
+
+        });
+
+        function Validatephone(e) {
+            var keyCode = e.keyCode || e.which;
+            var errorMsg = document.getElementById("ErrorPhone");
+            errorMsg.innerHTML = "";
+
+
+
+            //Regex to allow only Alphabets Numbers Dash Underscore and Space
+            var pattern = /^[0-9]/i;
+
+
+
+            //Validating the textBox value against our regex pattern.
+            var isValid = pattern.test(String.fromCharCode(keyCode));
+            if (!isValid) {
+                errorMsg.innerHTML = "Allow only Integers" ;
+            }
+
+
+
+            return isValid;
+
+        }
+        function ValidateZip(e) {
+            var keyCode = e.keyCode || e.which;
+            var errorMsg = document.getElementById("ErrorZip");
+            errorMsg.innerHTML = "";
+            var pattern = /^[0-9]/i;
+            var isValid = pattern.test(String.fromCharCode(keyCode));
+            if (!isValid) {
+                errorMsg.innerHTML = "Enter valid Zip";
+            }
+            return isValid;
+
+        }
+
+        function isNumberKey(evt) {
+            var charCode = (evt.which) ? evt.which : event.keyCode
+            if (charCode > 32 && (charCode < 48 || charCode > 57) || (charCode == 32))
+                return false;
+            return true;
+        }
+
+
+
+
+
+        $(document).on("click", ".action-buttons .dropdown-menu", function (e) {
+            e.stopPropagation();
+
+
+        });
+
+        $(document).ready(function () {
+            $("#firstDiv").show();
+            $("#secondDiv").hide();
+            // $("#firstDiv").css("display", "block");
+            //$("#secondDiv").css("display", "none");
+        });
+        //signUp
+        $("#Signup").click(function () {
+            //$("#firstDiv").css("display", "none");
+            //$("#secondDiv").css("display", "block");
+            $("#firstDiv").hide();
+            $("#secondDiv").show();
+        });
+        $("#back").click(function () {
+            $("#firstDiv").show();
+            $("#secondDiv").hide();
+        });
+        function next() {
+
+            var letters = /^[0-9]+$/;
+            if ((document.getElementById("Firstname").value.trim() == "") || (document.getElementById("Firstname").value.trim().match.letters))
+            {
+                document.getElementById("message").innerHTML = "* The Firstname field is required";
+
+            }
+            else {
+                document.getElementById("message").innerHTML = "";
+
+            }
+
+            if (document.getElementById("Lastname").value.trim() == "") {
+                document.getElementById("last").innerHTML = "* The Lastname field is required";
+
+            } else {
+                document.getElementById("last").innerHTML = "";
+
+            }
+
+            if (document.getElementById("Companyname").value.trim() == "") {
+                document.getElementById("company").innerHTML = "* The Companyname field is required";
+
+            } else {
+                document.getElementById("company").innerHTML = "";
+            }
+
+            if (document.getElementById("Phone").value.trim() == "") {
+                document.getElementById("phone").innerHTML = "* The Phone field is required";
+
+            } else {
+                document.getElementById("phone").innerHTML = "";
+            }
+
+
+            if (document.getElementById("Email").value.trim() == "") {
+                document.getElementById("mail").innerHTML = "* The Email field is required";
+
+            } else {
+                document.getElementById("mail").innerHTML = "";
+            }
+
+            if (document.getElementById("Password").value.trim() == "") {
+                document.getElementById("Pass").innerHTML = "* The Password field is required";
+
+            } else {
+                document.getElementById("Pass").innerHTML = "";
+            }
+
+            if (document.getElementById("Passwordagain").value.trim() == "") {
+                document.getElementById("seen").innerHTML = "* The PasswordAgain field is required";
+
+            } else {
+                document.getElementById("seen").innerHTML = "";
+
+            }
+
+            // if (document.getElementById("Passwordagain").value.trim() != ("Password").value.trim()) {
+            //     document.getElementById("seen").innerHTML = "* The PasswordAgain field is required";
+
+            // }
+            if (document.getElementById("Add1").value.trim() == "") {
+                document.getElementById("mess").innerHTML = "* The Address field is required";
+
+            } else {
+                document.getElementById("mess").innerHTML = "";
+
+            }
+            if (document.getElementById("Address").value.trim() == "") {
+                document.getElementById("bot").innerHTML = "* The Address field is required";
+
+            } else {
+                document.getElementById("bot").innerHTML = "";
+
+            }
+            if (document.getElementById("City").value.trim() == "") {
+                document.getElementById("ci").innerHTML = "* The City field is required";
+
+            } else {
+                document.getElementById("ci").innerHTML = "";
+
+            }
+            if (document.getElementById("State").value.trim() == "") {
+                document.getElementById("st").innerHTML = "* The State field is required";
+
+            } else {
+                document.getElementById("st").innerHTML = "";
+
+            }
+            if (document.getElementById("Zip").value.trim() == "") {
+                document.getElementById("zi").innerHTML = "* The Zip field is required";
+            } else {
+                document.getElementById("zi").innerHTML = "";
+
+            }
+
+        }
+
+        $(function () {
+            $("#onsubmit").click(function () {
+
+                $.ajax({
+                    type: "POST",
+                    url: "/User/Create",
+                    data: {
+                        Firstname: $("#Firstname").val(),
+                        Lastname: $("#Lastname").val(),
+                        Companyname: $("#Companyname").val(),
+                        Phone: $("#Phone").val(),
+                        Email: $("#Email").val(),
+                        Password: $("#Password").val(),
+                        Passwordagain: $("#Passwordagain").val(),
+                        Timezone: $("#Time_Zone").val(),
+                        Streetaddress_1: $("#Add1").val(),
+                        Streetaddress_2: $("#Address").val(),
+                        City: $("#City").val(),
+                        State: $("#State").val(),
+                        Zip: $("#Zip").val(),
+                    },
+
+                    success: function (da) {
+
+                        alert(JSON.stringify(da));
+                        
+
+                    },
+
+
+
+                }
+                );
+
+            })
+        })
+
+
+
+        </script>
+</body>
+
+</html>

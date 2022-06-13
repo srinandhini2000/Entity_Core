@@ -1,0 +1,655 @@
+﻿@model IEnumerable<DBCon.Opportunity>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.12.0/css/dataTables.bootstrap5.min.css" />
+        <link href="~/Scripts/free-jqGrid/plugins/css/ui.multiselect.css" rel="stylesheet" />
+        <!-- import bootstrap cdn-->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+              integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+              crossorigin="anonymous">
+        <!-- import jquery cdn -->
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+                integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+                crossorigin="anonymous">
+        </script>
+        <!-- import popper.js cdn -->
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+                integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+                crossorigin="anonymous">
+        </script>
+        <!-- import javascript cdn -->
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+                integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+                crossorigin="anonymous">
+        </script>
+        <script src="~/Scripts/jquery-3.4.1.js"></script>
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+        <script src="https://cdn.datatables.net/1.12.0/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.12.0/js/dataTables.bootstrap5.min.js"></script>
+        <!-- CSS stylesheet -->
+        <style type="text/css">
+
+
+
+            body {
+                background-image: url('../../Images/header-tile.png');
+                font-family: "Open Sans", sans-serif;
+                font-size: 13px !important;
+                width: 99%
+            }
+
+
+            .nav-link {
+                border-radius: 0px !important;
+            }
+
+                .nav-link small {
+                    font-size: 10px;
+                    color: rgb(90, 89, 89);
+                }
+
+                .nav-link:hover {
+                    background-color: #52525240 !important
+                }
+
+                .nav-link .fa {
+                    transition: all 1s;
+                    font-size: 35px;
+                    color: rgb(90, 89, 89);
+                }
+        </style>
+    </head>
+    <body>
+
+        <nav class="navbar navbar-expand-lg p-0  " style="background-color: #388ED9;width:101%">
+            <a class="navbar-brand border-right " href="#">
+
+                <img src="~/Images/nav-logo (1).png" class="mr-2" width="90">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon text-white"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto" style="font-size:13px">
+                    <li class="nav-item ">
+                        <a class="nav-link border-right text-white " href="~/Leads/Index"><span class="mr-2">Leads</span></a>
+                    </li>
+                    <li class="nav-item border-right px-2 ">
+                        <a class="nav-link   text-white" href="~/Opp/Index">Opportunities</a>
+                    </li>
+                    <li class="nav-item  border-right px-2">
+                        <a class="nav-link   text-white" href="#">Jobs</a>
+                    </li>
+                    <li class="nav-item dropdown  border-right px-2">
+                        <a class="nav-link dropdown-toggle text-white" href="#" id="navbardrop" data-toggle="dropdown">
+                            Accounting
+                        </a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="#">Link 1</a>
+                            <a class="dropdown-item" href="#">Link 2</a>
+                            <a class="dropdown-item" href="#">Link 3</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown  border-right px-2">
+                        <a class="nav-link dropdown-toggle text-white" href="#" id="navbardrop" data-toggle="dropdown">
+                            Customers
+                        </a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="#">Link 1</a>
+                            <a class="dropdown-item" href="#">Link 2</a>
+                            <a class="dropdown-item" href="#">Link 3</a>
+                        </div>
+                    </li>
+
+                    <li class="nav-item dropdown  border-right px-2">
+                        <a class="nav-link dropdown-toggle text-white" href="#" id="navbardrop" data-toggle="dropdown">
+                            Inventory
+                        </a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="#">Link 1</a>
+                            <a class="dropdown-item" href="#">Link 2</a>
+                            <a class="dropdown-item" href="#">Link 3</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown  border-right px-2">
+                        <a class="nav-link dropdown-toggle text-white" href="#" id="navbardrop" data-toggle="dropdown">
+                            Dispatcher
+                        </a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="#">Link 1</a>
+                            <a class="dropdown-item" href="#">Link 2</a>
+                            <a class="dropdown-item" href="#">Link 3</a>
+                        </div>
+                    </li>
+                </ul>
+                <form class="form-inline ">
+                    <label class="nav-item dropdown px-3">
+                        <a class=" mr-2 dropdown-toggle text-white " href="#" id="navbardrop" data-toggle="dropdown">
+
+                        </a><span class="text-white ">ABINGTON</span>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="#">Link 1</a>
+                            <a class="dropdown-item" href="#">Link 2</a>
+                            <a class="dropdown-item" href="#">Link 3</a>
+                        </div>
+                    </label>
+                    <input class="pr-5 p-1 px-2 " type="search" placeholder="Search anything..." style="border-radius: 40px;border: none;">
+                    <a href=""><i class='fa fa-bell-o text-white ml-4'></i></a>
+                    <a href="/Home/Logout">
+
+                        <img src="~/Images/blank-user-tiny.jpg" style="border-radius: 50px;width:65%" class="ml-3">
+                    </a>
+                    <a href="" class="text-white mx-2">Depigaa SV</a>
+                </form>
+            </div>
+        </nav>
+        <!-- h-100 takes the full height of the body-->
+        <div class="row">
+            <div class=" col-lg-1">
+
+
+
+                <div class=" d-flex flex-column flex-shrink-0  h-100" style="width: 100px;background-color: #EEE">
+                    <ul class="nav nav-pills nav-flush flex-column mb-auto text-center ">
+                        <li class="nav-item"> <a href="#" class="nav-link mt-3 py-3" style="transition:all 0.5s;width:100px;display:flex;flex-direction:column"> <i class="fa fa-check-square-o "></i> <small>Tasks</small> </a> </li>
+                        <li> <a href="#" class="nav-link py-3"> <i class="fa fa-calendar "></i> <small>Calender</small> </a> </li>
+                        <li> <a href="#" class="nav-link py-3"> <i class="fa fa-bar-chart "></i> <small>Reports</small> </a> </li>
+                        <li> <a href="#" class="nav-link py-3" style="transition:all 0.5s;width:100px;display:flex;flex-direction:column"> <i class="fa fa-users "></i> <small class="mt-1">Users</small> </a> </li>
+                        <li> <a href="#" class="nav-link py-3"> <i class="fa fa-gear "></i> <small>Settings</small> </a> </li>
+                        <li> <a href="#" class="nav-link py-3"> <i class="fa fa-question-circle "></i> <small>Support</small> </a> </li>
+
+                        <li> <a href="#" class="nav-link py-3" style="transition:all 0.5s;width:100px;display:flex;flex-direction:column"> <i class="fa fa-dashboard "></i> <small>Super Admin</small> </a> </li>
+
+                    </ul>
+
+                </div>
+            </div>
+            <!--Contains the main content
+                of the webpage-->
+
+
+
+
+            <div class=" col-8 mb-5  " style="background-color: white; border-right: 1px solid lightgray">
+
+                <div class="row ">
+                    <div class=" col-12 py-4  " style="background-image: url('../../Images/tile.png'); border-bottom: 1px solid lightgray ">
+                        <span style="font-size: 30px;">Opportunities</span>
+                        <div class=" float-end ">
+
+                            <button type="submit" class="btn text-white btn-warning">View Archieved</button>
+
+                            <button type="button" class="btn text-white btn-success" data-bs-toggle="modal" data-bs-target="#myModal">
+                                Start New Opportunities
+                            </button>
+                        </div>
+
+                        <!-- The Modal -->
+                        <div class="modal" id="myModal">
+                            <div class="modal-dialog modal-dialog-scrollable">
+                                <div class="modal-content">
+
+                                    <!-- Modal Header -->
+                                    <div class="modal-header">
+                                        <p class="modal-title">Start New Opportunity</p>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                    </div>
+
+                                    <!-- Modal body -->
+                                    <div class="modal-body">
+                                        <div class="container border">
+                                            <div class="row " style="border-bottom: 1px dotted #dddddd;">
+                                                <div class="col-3 border-right pt-2">
+                                                    Customer
+                                                </div>
+                                                <div class="col p-2">
+                                                    <select class="form-select  form-select-sm " style="font-size:13px" id="Customer">
+                                                        <option selected>Select a customer or enter new one...</option>
+                                                        <option>concertcareIDC</option>
+                                                        <option>TCL</option>
+                                                        <option>CTC</option>
+                                                    </select>
+                                                </div>
+
+                                            </div>
+                                            <div class="row justify-content-center  p-2" style="font-weight: bold; background: #FAFAFA; border-bottom: 1px dotted #dddddd;">
+                                                New Customer Information
+                                            </div>
+                                            <div class="row text-center mt-3 pb-4" style="border-bottom: 1px dotted #dddddd;">
+                                                <div class="form-check ">
+                                                    <input class="form-check-input" type="checkbox" onchange="valueChanged()" id="check" checked>
+                                                    <label class="form-check-label " for="flexCheckIndeterminate" style=" padding-top: 2px;">
+                                                        Business Account
+                                                    </label>
+                                                </div>
+
+                                            </div>
+                                            <div class="row " style="border-bottom: 1px dotted #dddddd;" id="company">
+                                                <div class="col-3 border-right pt-2">
+                                                    Company Name <span style="color:red">*</span>
+                                                </div>
+                                                <div class="col p-2">
+                                                    <input type="text" placeholder="Enter company name here..."
+                                                           class="w-100 p-1" style="font-size: 13px; border: 1px solid #ccc; background: #f9f9f9;" />
+                                                </div>
+
+                                            </div>
+                                            <div class="row " style="border-bottom: 1px dotted #dddddd;">
+                                                <div class="col-3 border-right pt-2">
+                                                    First Name <span style="color:red">*</span>
+                                                </div>
+                                                <div class="col p-2">
+                                                    <input type="text" placeholder="Enter first name here..."
+                                                           class="w-100 p-1" style="font-size: 13px; border: 1px solid #ccc; background: #f9f9f9;" />
+                                                </div>
+
+                                            </div>
+                                            <div class="row " style="border-bottom: 1px dotted #dddddd;">
+                                                <div class="col-3 border-right pt-2">
+                                                    Last Name <span style="color:red">*</span>
+                                                </div>
+                                                <div class="col p-2">
+                                                    <input type="text" placeholder="Enter last name here..."
+                                                           class="w-100 p-1" style="font-size: 13px; border: 1px solid #ccc; background: #f9f9f9;" />
+                                                </div>
+
+                                            </div>
+                                            <div class="row " style="border-bottom: 1px dotted #dddddd;">
+                                                <div class="col-3 border-right pt-2">
+                                                    Phone <span style="color:red">*</span>
+                                                </div>
+                                                <div class="col p-2">
+                                                    <input type="text" class="w-100 p-1" style="font-size: 13px; border: 1px solid #ccc; background: #f9f9f9;" />
+                                                </div>
+
+                                            </div>
+                                            <div class="row " style="border-bottom: 1px dotted #dddddd;">
+                                                <div class="col-3 border-right pt-2">
+                                                    Email <span style="color:red">*</span>
+                                                </div>
+                                                <div class="col p-2">
+                                                    <input type="text" class="w-100 p-1" style="font-size: 13px; border: 1px solid #ccc; background: #f9f9f9;" />
+                                                </div>
+
+                                            </div>
+
+                                            <div class="row " style="border-bottom: 1px dotted #dddddd;">
+                                                <div class="col-3 border-right pt-2">
+                                                    Type
+                                                </div>
+                                                <div class="col p-2">
+                                                    <select class="form-select  form-select-sm " style="font-size:13px">
+                                                        <option selected>Select a type...</option>
+                                                        <option>Active</option>
+                                                        <option>Inactive</option>
+
+                                                    </select>
+                                                </div>
+
+                                            </div>
+                                            <div class="row " style="border-bottom: 1px dotted #dddddd;">
+                                                <div class="col-3 border-right pt-2">
+                                                    Source
+                                                </div>
+                                                <div class="col p-2">
+                                                    <select class="form-select  form-select-sm " style="font-size:13px">
+                                                        <option selected>Select a source...</option>
+                                                        <option>Google Ad Words</option>
+                                                        <option>Referral</option>
+                                                        <option>Web search</option>
+
+
+                                                    </select>
+                                                </div>
+
+                                            </div>
+                                            <div class="row " style="border-bottom: 1px dotted #dddddd;">
+                                                <div class="col-3 border-right pt-2">
+                                                    Locations
+                                                </div>
+                                                <div class="col p-2">
+                                                    <button type="button" class="btn  btn-success" style="font-size: 10px; padding: 1px 4px;">ABINGTON</button>
+                                                    <button type="button" class="btn " style="font-size: 10px; background: #eee; padding: 1px 4px;">AVON</button>
+                                                    <button type="button" class="btn " style="font-size: 10px; background: #eee; padding: 1px 4px;">cc chennai</button>
+                                                    <button type="button" class="btn" style="font-size: 10px; background: #eee; padding: 1px 4px;">Chennai</button>
+                                                    <button type="button" class="btn" style="font-size: 10px; background: #eee; padding: 1px 4px;">Concert chennai</button>
+                                                    <button type="button" class="btn" style="font-size: 10px; background: #eee; padding: 1px 4px;">Pammal</button>
+                                                    <button type="button" class="btn " style="font-size: 10px; background: #eee; padding: 1px 4px">Tiruttani</button>
+
+                                                </div>
+                                            </div>
+
+                                            <div class="row justify-content-center  p-2" style="font-weight: bold; background: #FAFAFA; border-bottom: 1px dotted #dddddd;">
+                                                Opportunity Information
+                                            </div>
+                                            <div class="row " style="border-bottom: 1px dotted #dddddd;">
+                                                <div class="col-3 border-right pt-2">
+                                                    Name / Number <span style="color:red">*</span>
+                                                </div>
+                                                <div class="col p-2">
+                                                    <input type="text" placeholder="Give this opportunity a unique name..." id="Name_Number"
+                                                           class="w-100 p-1" style="font-size: 13px; border: 1px solid #ccc; background: #f9f9f9;" />
+                                                </div>
+
+                                            </div>
+                                            <div class="row " style="border-bottom: 1px dotted #dddddd;">
+                                                <div class="col-3 border-right pt-2">
+                                                    Plan Name
+                                                </div>
+                                                <div class="col p-2">
+                                                    <input type="text" class="w-100 p-1" placeholder="(if applicable...)"
+                                                           style="font-size: 13px; border: 1px solid #ccc; background: #f9f9f9;" />
+                                                </div>
+
+                                            </div>
+                                            <div class="row " style="border-bottom: 1px dotted #dddddd;">
+                                                <div class="col-3 border-right pt-2">
+                                                    Subdivision
+                                                </div>
+                                                <div class="col p-2">
+                                                    <input type="text" class="w-100 p-1"
+                                                           style="font-size: 13px; border: 1px solid #ccc; background: #f9f9f9;" />
+                                                </div>
+
+                                            </div>
+                                            <div class="row " style="border-bottom: 1px dotted #dddddd;">
+                                                <div class="col-3 border-right pt-2">
+                                                    Address
+                                                </div>
+                                                <div class="col-9 p-2">
+                                                    <input type="text" class="w-100 p-1" placeholder="Address" id="Address"
+                                                           style="font-size: 13px; border: 1px solid #ccc; background: #f9f9f9;" />
+                                                </div>
+                                            </div>
+                                            <div class="row " style="border-bottom: 1px dotted #dddddd;">
+                                                <div class="col-3 border-right pt-2">
+
+                                                </div>
+                                                <div class="col-3  border-right p-2">
+                                                    <input type="text" class="w-100 p-1" placeholder="City" id="Address"
+                                                           style="font-size: 13px; border: 1px solid #ccc; background: #f9f9f9;" />
+                                                </div>
+                                                <div class="col-3  border-right p-2">
+                                                    <input type="text" class="w-100 p-1" placeholder="State" id="Address"
+                                                           style="font-size: 13px; border: 1px solid #ccc; background: #f9f9f9;" />
+                                                </div>
+                                                <div class="col-3  p-2">
+                                                    <input type="text" class="w-100 p-1" placeholder="Zip" id="Address"
+                                                           style="font-size: 13px; border: 1px solid #ccc; background: #f9f9f9;" />
+                                                </div>
+
+
+                                            </div>
+                                            <div class="row " style="border-bottom: 1px dotted #dddddd;">
+                                                <div class="col-3 border-right pt-2">
+                                                    Country
+                                                </div>
+                                                <div class="col p-2">
+                                                    <input type="text" class="w-100 p-1"
+                                                           style="font-size: 13px; border: 1px solid #ccc; background: #f9f9f9;" />
+                                                </div>
+
+                                            </div>
+                                            <div class="row " style="border-bottom: 1px dotted #dddddd;">
+                                                <div class="col-3 border-right pt-2">
+                                                    Salesperson
+                                                </div>
+                                                <div class="col p-2">
+                                                    <select class="form-select  form-select-sm " style="font-size:13px" id="Salesperson">
+                                                        <option selected>Select a Salesperson...</option>
+                                                        <option>Peter</option>
+                                                        <option>Vikram</option>
+                                                        <option>Dinesh</option>
+                                                    </select>
+                                                </div>
+
+                                            </div>
+                                            <div class="row " style="border-bottom: 1px dotted #dddddd;">
+                                                <div class="col-3 border-right pt-2">
+                                                    Type
+                                                </div>
+                                                <div class="col p-2">
+                                                    <select class="form-select  form-select-sm " style="font-size:13px">
+                                                        <option selected>Select a type...</option>
+                                                        <option>Villa 1</option>
+                                                        <option>Villa 2</option>
+                                                    </select>
+                                                </div>
+
+                                            </div>
+                                            <div class="row " style="border-bottom: 1px dotted #dddddd;">
+                                                <div class="col-3 border-right pt-2">
+                                                    Private <br />Notes
+                                                </div>
+                                                <div class="col p-2">
+                                                    <textarea type="text" class="w-100 p-1" placeholder="Add optional private notes here..."
+                                                              style="font-size: 13px; border: 1px solid #ccc; background: #f9f9f9;"></textarea>
+                                                </div>
+
+                                            </div>
+                                            <div class="row " style="border-bottom: 1px dotted #dddddd;">
+                                                <div class="col-3 border-right pt-2">
+                                                    Options
+                                                </div>
+                                                <div class="col p-2">
+
+                                                    <p>Job is within city limits? <span style="color:red">*</span></p>
+                                                    <input type="radio" name="HTML">
+                                                    <label for="html">Yes</label><br>
+                                                    <input type="radio" name="HTML" checked>
+                                                    <label for="html">No</label>
+                                                    <br />
+                                                    <p>Is this job permitted? <span style="color:red">*</span></p>
+                                                    <input type="radio" name="CSS">
+                                                    <label for="html">Yes</label><br>
+                                                    <input type="radio" name="CSS" checked>
+                                                    <label for="html">No</label><br>
+
+                                                </div>
+                                            </div><br />
+                                        </div>
+                                    </div>
+
+
+                                    <!-- Modal footer -->
+                                    <div class="modal-footer p-0" style=" background-color: #f5f5f5">
+                                        <button type="button" class="btn mt-3 ml-3" data-bs-dismiss="modal" style="background: #eee; padding: 5px 9px; ">Close</button>
+
+                                        <button type="button" class="btn text-white mt-3 mr-3" style="background: #368ee0; padding: 5px 9px;" id="onsubmit">Start</button>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="row p-3 " style="height:40%">
+                    <div class="col-12 col-lg-3 py-4  " style="background:  url('../../Images/tile.png'); border: 1px solid#DDD">
+                        <input class="w-100 p-1 pl-2" type="text" placeholder="Search Opportunities..." style="font-size:15px;" disabled>
+                        <select class="form-select my-3" id="sel1" name="sellist1" style="font-size:14px">
+                            <option>Select an status..</option>
+                            <option>2</option>
+                        </select>
+                        <select class="form-select my-3" id="sel1" name="sellist1" style="font-size:14px">
+                            <option>Last 90 days...</option>
+                            <option>2</option>
+                        </select>
+                        <select class="form-select " id="sel1" name="sellist1" style="font-size:14px">
+                            <option>Selelct a sales person...</option>
+                            <option>2</option>
+                        </select>
+                        <div class="text-end mt-2" style="color: #368ee0; font-size: 14px">
+                            More options
+                        </div>
+
+                        <div class="form-check my-2">
+                            <input type="checkbox" class="form-check-input">
+                            <label class="form-check-label" style="font-size:13px">Needs Scheduling</label>
+                        </div>
+                        <button type="submit" class="btn btn-sm text-black  " style="background: #eee;width:55%"> Clear</button>
+                        <button type="submit" class="btn btn-sm text-white   " style="background: #368ee0;width:43%">Filter</button>
+                    </div>
+                    <div class="col-12 col-lg border ml-2">
+
+                    </div>
+                </div>
+
+
+
+
+
+                <div class="  row mb-4 ml-1 mr-1">
+                    <div class="col-4 p-3   text-center border" style="background-color: #EEE;    color: #AAA;
+      font-weight: bold;">
+                        <span style="text-align: center;
+        font-size: 16px;
+        background: #ddd;
+        padding: 4px 10px;
+        color: #888;">2</span> Open
+                    </div>
+                    <div class="col-4 p-3   text-center  border" style="background-color: #EEE;    color: #AAA;
+      font-weight: bold;">
+                        <span style="text-align: center;
+        font-size: 16px;
+        background: #ddd;
+        padding: 4px 10px;
+        color: #888;">2</span> Bending
+                    </div>
+                    <div class="col-4 p-3   text-center  border" style="background-color: #EEE;    color: #AAA;font-weight: bold;">
+                        <span style="text-align: center;font-size: 16px; background: #ddd;padding: 4px 10px;color: #888;">0</span> Project Template
+                    </div>
+                </div>
+
+                @* <div class="row">
+                        <div class="col-4 ml-2">
+                            Show
+                            <select style="width: 60%; border: 1px solid #ccc;" id="maxRows" name="sellist1" class="p-1">
+                                <option>1</option>
+                                <option>2</option>
+                            </select>
+                            entries
+                        </div>
+                        <div class="col text-end mr-1 ">
+                            <label>Search:</label>
+                            <input type="text" id="myInput" placeholder="Search here..." style="background: #f9f9f9; border: 1px solid #AAA ">
+                        </div>
+                    </div>*@
+
+                <div class="row mt-2 mb-5 ">
+
+
+
+                    <table class=" table table-bordered table-data" id="tbldata">
+
+
+                        <thead>
+
+                            <tr class="table-secondary ">
+                                <th>Customer</th>
+                                <th>Created</th>
+                                <th>Modified</th>
+                                <th>Status</th>
+                                <th>Name/Number</th>
+                                <th>Address</th>
+                                <th>SalesPerson</th>
+
+
+
+                                <th>Action</th>
+                                <th>Due Date</th>
+                            </tr>
+                        </thead>
+                        <tbody id="myTable" style="border:none">
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td style="color: #368ee0;">
+                                        @Html.DisplayFor(modelItem => item.Customer)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Created)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Modified)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Status)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Name_Number)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Address)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Salesperson)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Action)
+
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Due_Date)
+                                    </td>
+
+
+
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+
+
+                    @*  <div class="row">
+                            <div class="col-4 ml-2">
+                                Showing 1 to 12 of 12 entries
+                            </div>
+                            <div class="col mr-1">
+                                <nav>
+                                    <ul class="pagination  justify-content-end">
+                                    </ul>
+                                </nav>
+
+                        </div>*@
+
+                    <hr style="height: 0.01px;color: #EEE;width:95%" class="mt-2 ml-2">
+                    <div class="text-center p-2 " style="    color: #999;font-size: 10px;">© FieldGroove, LLC 2022. All Rights Reserved.</div>
+                </div>
+            </div>
+
+
+            <script src="~/Scripts/bootstrap.min.js"></script>
+
+            <script>
+                $(function () {
+                    $('#tbldata').DataTable();
+                })
+
+
+        function valueChanged() {
+            if ($('#check').is(":checked"))
+                $("#company").show();
+            else
+                $("#company").hide();
+        }
+
+            </script>
+    </body>
+</html>
+
