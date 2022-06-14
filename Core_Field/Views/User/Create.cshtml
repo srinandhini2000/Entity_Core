@@ -57,10 +57,10 @@
 
 <body>
 
+
     <nav class="navbar navbar-expand-lg p-4 px-5 ml-5 mb-3">
         <a href="#" class="navbar-brand ml-5">
-
-            <img src="~/Images/fg_logo.png">
+            <img src="~/Images/fg_logo.png" class="ml-5">
         </a>
         <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
             <span class="navbar-toggler-icon"></span>
@@ -80,7 +80,7 @@
                 </div>
                 <a href="#" class="nav-item nav-link mr-4 ">FAQS</a>
                 <a href="#" class="nav-item nav-link mr-4">CONTACT <span class="ml-1">US</span> </a>
-                <a href="~/Employee/Index" class="nav-item nav-link mr-4">LOGIN</a>
+                <a href="Employee/Index" class="nav-item nav-link mr-4">LOGIN</a>
                 <div class="nav-item dropdown mr-5 ">
                     <a href="#" class="btn text-white px-4" style="background-color:#113ca0;border-radius: 40px;">
                         SIGN
@@ -96,123 +96,141 @@
     </div>
     <div class="container ">
         <!-- <div class="row " > -->
-        <div class="row justify-content-center " style="width:95%">
-           
-                <div class="col-12  col-md-4 col-lg-4 p-4 " id="firstDiv" style="background-color:#162547">
+        <div class="row justify-content-center ">
 
-                    <h5 class="text-white mt-3 text-decoration-underline" style="font-weight: 400">Account Info</h5>
+            <div class="col-12  col-md-4 col-lg-4 p-4 " id="firstDiv" style="background-color:#162547">
 
-
-                    <label class="text-white">First Name*</label>
-                    <input type="text" class="w-100 mt-1 p-1" id="Firstname" onkeypress="return Validate(event)">
-
-                    <div style="color:orangered;font-size:16px;" id="Errorname"></div>
-
-                    <div class="my-2 ">
-                        <label class="text-white">Last Name*</label>
-                        <input type="text" class="w-100 mt-1 p-1" id="Lastname" onkeypress="return Validatelname(event)">
-                        @Html.ValidationMessageFor(model => model.Lastname, "", new { @class = "text-danger" })
-                        <div style="color:orangered;font-size:16px;" id="Errorlname"></div>
-                    </div>
-
-                    <div class="mb-2">
-                        <label class="text-white">Company Name*</label>
-                        <input type="text" class="w-100  mt-1 p-1" id="Companyname" onkeypress="return Validatecom(event)">
-                        <div style="color:orangered;font-size:16px;" id="Errorcom"></div>
-                    </div>
-                    <div class="mb-2">
-                        <label class="text-white">Phone*</label>
-                        <input type="tel" class="w-100  mt-1 p-1" id="Phone" maxlength="10" onkeypress="return Validatephone(event)">
-                        <div style="color:orangered;font-size:16px;" id="ErrorPhone"></div>
-                    </div>
-                    <div class="mb-2">
-                        <label class="text-white">Email*</label><br />
-                        <input type="email" class="w-100  mt-1 p-1" id="Email" onkeyup="EmailValidate();"
-                               required>
-                        <div id="lblError" style="color: red"></div>
-                        @ViewBag.Message
-                    </div>
-                    <div class="mb-2">
-                        <label class="text-white">Password*</label>
-                        <input type="password" class="w-100 mt-1 p-1" id="Password" onkeyup="Validatepassword();">
-                        <i class="bi bi-eye-slash" id="togglePassword" style="margin-left: -30px; cursor: pointer;"></i>
-                        <div style="color:orangered;font-size:16px;" id="lblpass"></div>
-                    </div>
-                    <div class="mb-2 ">
-                        <label class="text-white ">Password Again*</label>
-                        <input type="password" class="w-100  mt-1 p-1" id="Passwordagain" name="Password2">
-
-                        <div id="CheckPasswordMatch"></div>
-
-                    </div>
-                    <div class="mb-2 ">
-                        <label class="text-white mb-2">Time Zone*</label>
-                        <select class="w-100  mb-3 p-2" id="Time_Zone">
-                            <option selected value="Central Standard Time">Central Standard Time</option>
-                            <option value="Indian Standard Time">Indian Standard Time</option>
-                            <option value="Pacific Time">Pacific Time</option>
-                            <option value="3">Three</option>
-                        </select>
-                    </div>
-                    <div class="mt-3 mr-4 ">
-
-                        <button type="submit" class="btn float-end  mb-5  text-white" id="Signup"
-                                style="background-color: #E36156;width:43%">
-                            Next
-                        </button>
-
-                    </div>
+                <h5 class="text-white mt-3 text-decoration-underline" style="font-weight: 400">Account Info</h5>
 
 
+                <label class="text-white">First Name*</label>
+                <input type="text" class="w-100 mt-1 p-1" id="Firstname" asp-for="Firstname" onkeypress="return Validate(event)">
+                <span asp-validation-for="Firstname" class="text-danger"></span>
+
+                <div style="color:orangered;font-size:16px;" id="Errorname"></div>
+
+                <div class="my-2 ">
+                    <label class="text-white">Last Name*</label>
+                    <input type="text" class="w-100 mt-1 p-1" id="Lastname" asp-for="Lastname" onkeypress="return Validatelname(event)">
+                    <div style="color:orangered;font-size:16px;" id="Errorlname"></div>
+                    <span asp-validation-for="Lastname" class="text-danger"></span>
+                </div>
+
+                <div class="mb-2">
+                    <label class="text-white">Company Name*</label>
+                    <input type="text" class="w-100  mt-1 p-1" id="Companyname" asp-for="Companyname" onkeypress="return Validatecom(event)">
+                    <div style="color:orangered;font-size:16px;" id="Errorcom"></div>
+                    <span asp-validation-for="Companyname" class="text-danger"></span>
+                </div>
+                <div class="mb-2">
+                    <label class="text-white">Phone*</label>
+                    <input type="tel" class="w-100  mt-1 p-1" id="Phone" asp-for="Phone" maxlength="10" onkeypress="return Validatephone(event)">
+                    <div style="color:orangered;font-size:16px;" id="ErrorPhone"></div>
+                    <span asp-validation-for="Phone" class="text-danger"></span>
+                </div>
+                <div class="mb-2">
+                    <label class="text-white">Email*</label><br />
+                    <input type="email" class="w-100  mt-1 p-1" id="Email" asp-for="Email" onkeyup="EmailValidate();" required>
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                    <div id="lblError" style="color: red"></div>
+                </div>
+                <div class="mb-2">
+                    <label class="text-white">Password*</label>
+
+                    <input type="password" class="w-100  mt-1 p-1" id="Password" asp-for="Password" onkeyup="Validatepassword();">
+
+                    <i class="bi bi-eye-slash" id="togglePassword" style="margin-left: -30px; cursor: pointer;"></i>
+                    <div style="color:orangered;font-size:16px;" id="lblpass"></div>
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+                <div class="mb-2 ">
+                    <label class="text-white ">Password Again*</label>
+
+                    <input type="password" class="w-100  mt-1 p-1" asp-for="Passwordagain" id="Passwordagain">
+                    <span asp-validation-for="Passwordagain" class="text-danger"></span>
+                    <div id="CheckPasswordMatch"></div>
 
                 </div>
-                <div class="col-12 col-lg-4  p-4 py-5" id="secondDiv" style="background-color:#162547">
-                    <h5 class="text-white mt-3 text-decoration-underline" style="font-weight: 400">
-                        Office Address <i class="fa fa-question-circle" style="font-size:15px"></i>
-                    </h5>
-                    <div class="mb-2 ">
-                        <label class="text-white">Street Address 1*</label>
-                        <input type="text" class="w-100 mt-1 p-1" id="Add1">
-                    </div>
-                    <div class="mb-2 ">
-                        <label class="text-white">Street Address 2*</label>
-                        <input type="text" class="w-100 mt-1 p-1" id="Address">
-                    </div>
-                    <div class="mb-2">
-                        <label class="text-white">City*</label><br />
-                        <input type="text" class="w-100 mt-1 p-1" pattern="[A-Za-z]{1,50}$" id="City" onkeypress="return Validatecity(event)">
-                        <div style="color:orangered;font-size:16px;" id="Errorcity"></div>
-                    </div>
-                    <div class="mb-2">
-                        <label class="text-white">State*</label><br />
-                        <input type="text" class="w-100 mt-1 p-1" pattern="[A-Za-z]{1,50}$" id="State" onkeypress="return Validatestate(event)">
-                        <div style="color:orangered;font-size:16px;" id="Errorstate"></div>
-                    </div>
-                    <div class="mb-2">
-                        <label class="text-white">Zip*</label><br />
-                        <input type="tel" class="w-100 mt-1 p-1" pattern="[0-9]{3} [0-9]{3}" id="Zip" maxlength="6" @* onkeypress="return isNumberKey(event);*@ onkeypress="return ValidateZip(event);">
-                        <div style="color:orangered;font-size:16px;" id="ErrorZip"></div>
-                    </div>
-                    <div class="mt-4 pb-5">
+                <div class="mb-2 ">
+                    <label class="text-white mb-2">Time Zone*</label>
+                    <select class="w-100  mb-3 p-2" id="Time_Zone">
+                        <option selected value="Central Standard Time">Central Standard Time</option>
+                        <option value="Indian Standard Time">Indian Standard Time</option>
+                        <option value="Pacific Time">Pacific Time</option>
+                        <option value="3">Three</option>
+                    </select>
+                </div>
+                <div class="mt-3  ">
 
-                        <button type="submit" class="btn  py-2" id="back"
-                                style="width: 45%; float: left; background-color: #172648; border: solid 1px #2D3B58; color: rgba(255, 255, 255, 0.5);">
-                            Back
-                        </button>
-
-                        <button type="submit" class="btn text-white  ml-2 py-2" id="onsubmit" onclick="next()"
-                                style="background-color: #E36156;width:45%">
-                            Sign Up
-                        </button>
-
-                    </div>
-
+                    <button type="submit" class="btn float-end  mb-5 py-2 text-white" id="Signup"
+                            style="background-color: #E36156;width:45%">
+                        Next
+                    </button>
 
                 </div>
 
-                <div class="col-12 col-md-4 col-lg-6  p-4 " style="background-color: #f2f5f8">
 
-                    <div style="color: orangered">
+            </div>
+
+
+            <div class="col-12 col-lg-4  p-4 py-5" id="secondDiv" style="background-color:#162547">
+
+                <h5 class="text-white mt-3 text-decoration-underline" style="font-weight: 400">
+                    Office Address <i class="fa fa-question-circle" style="font-size:15px"></i>
+                </h5>
+                <div class="mb-2 ">
+                    <label class="text-white">Street Address 1*</label>
+                    <input type="text" class="w-100 mt-1 p-1" asp-for="Streetaddress_1" id="Add1">
+                    <span asp-validation-for="Streetaddress_1" class="text-danger"></span>
+                </div>
+                <div class="mb-2 ">
+                    <label class="text-white">Street Address 2</label>
+                    <input type="text" class="w-100 mt-1 p-1" asp-for="Streetaddress_2" id="Address">
+                    <span asp-validation-for="Streetaddress_2" class="text-danger"></span>
+                </div>
+                <div class="mb-2">
+                    <label class="text-white">City*</label><br />
+                    <input type="text" class="w-100 mt-1 p-1" asp-for="City" pattern="[A-Za-z]{1,50}$" id="City" onkeypress="return Validatecity(event)">
+                    <div style="color:orangered;font-size:16px;" id="Errorcity"></div>
+                    <span asp-validation-for="City" class="text-danger"></span>
+                </div>
+                <div class="mb-2">
+                    <label class="text-white">State*</label><br />
+                    <input type="text" asp-for="State" class="w-100 mt-1 p-1" pattern="[A-Za-z]{1,50}$" id="State" onkeypress="return Validatestate(event)">
+                    <div style="color:orangered;font-size:16px;" id="Errorstate"></div>
+                    <span asp-validation-for="State" class="text-danger"></span>
+                </div>
+                <div class="mb-2">
+                    <label class="text-white">Zip*</label><br />
+                    <input type="tel" class="w-100 mt-1 p-1" asp-for="Zip" id="Zip" maxlength="6" onkeypress="return ValidateZip(event);">
+                    <div style="color:orangered;font-size:16px;" id="ErrorZip"></div>
+                    <span asp-validation-for="Zip" class="text-danger"></span>
+                </div>
+                <div class="mt-4 pb-5">
+
+                    <button type="submit" class="btn  py-2" id="back"
+                            style="width: 49%; float: left; background-color: #172648; border: solid 1px #2D3B58; color: rgba(255, 255, 255, 0.5);">
+                        Back
+                    </button>
+
+                    <button type="submit" class="btn text-white  ml-2 py-2" id="onsubmit" onclick="next(); return false;"
+                            style="background-color: #E36156;width:48%">
+                        Sign Up
+                    </button>
+
+                </div>
+            </div>
+
+
+
+
+
+            @section Scripts {
+                @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+            }
+            <div class="col-12 col-md-4 col-lg-6  p-4 " style="background-color: #f2f5f8">
+
+                @* <div style="color: orangered">
                         <div id="message"></div>
                         <div id="last"></div>
                         <div id="company"></div>
@@ -227,178 +245,175 @@
                         <div id="zi"></div>
 
 
-                    </div>
+                    </div>*@
 
 
-                    <h5 class="text mt-4" style="color: orangered;">SIGN UP NOW TO START YOUR FREE TRIAL</h5>
-                    <p class="my-3" style="color: #1B3365; font-weight: 400; font-size: 15px;    font-weight: 400; letter-spacing: 1px; ">
-                        FieldGroove empowers you to manage every aspect of your <br>
-                        contracting business anytime, anywhere, and from any <br>
-                        device.Enjoy a free trial where you can experience <br>
-                        everything FieldGroove has to offer, including:
-                    </p>
-                    <ul class="list-unstyled"
-                        style="color: #1B3365; font-weight: 500; letter-spacing: 0.05em;font-size:15px ">
-                        <li class="list-item mb-3 ">
-
-                            <img src="~/Images/icon-item.png" />
-                            Managing the entire job cycle from lead creation to post-job <span class="ml-4">reporting</span>
-                        </li>
-                        <li class="list-item ">
-                            <img src="~/Images/icon-item.png" /> Monitoring pipeline and backlog numbers, in real time
-                        </li>
-                        <li class="list-item my-3">
-                            <img src="~/Images/icon-item.png" />
-                            Building estimates for your prospects to review and accept <br><span class="ml-4">via email or on the job site</span>
-                        </li>
-                        <li class="list-item ">
-                            <img src="~/Images/icon-item.png" /> Keeping close track of your team, equipment, inventory, and <br>
-                            <span class="ml-4">jobs</span>
-                        </li>
-                        <li class="list-item my-3"> <img src="~/Images/icon-item.png" /> Automating scheduling and dispatching</li>
-                        <li class="list-item"> <img src="~/Images/icon-item.png" /> Preparing work orders and load tickets with one click</li>
-
-
-                    </ul>
-                </div>
-
-
-          
-        </div>
-
-        <div class="card-footer  text-center p-5 mt-5"
-             style="background: #fff; border: #fff; font-size: 37px; color: #2e58af;">
-            Frequently Asked Questions
-        </div>
-
-        <div class="row justify-content-center">
-            <div class="col-12 col-lg-4">
-                <h6 style=" color: #2E59B0; font-weight: 700;">Will my card on file be charged?</h6>
-                <p class="py-2 border-bottom" style="font-size: 16px; color: #1A3265;">
-                    We don’t charge anything at all before or during the trial <br>
-                    period. The card on file is simply so we know you’re a<br>
-                    person, not a robot.
+                <h5 class="text mt-4" style="color: orangered;">SIGN UP NOW TO START YOUR FREE TRIAL</h5>
+                <p class="my-3" style="color: #1B3365; font-weight: 400; font-size: 16px;    font-weight: 400; letter-spacing: 1px; ">
+                    FieldGroove empowers you to manage every aspect of your <br>
+                    contracting business anytime, anywhere, and from any <br>
+                    device.Enjoy a free trial where you can experience <br>
+                    everything FieldGroove has to offer, including:
                 </p>
-
-            </div>
-            <div class="col-12 col-lg-4">
-                <h6 style="color: #2E59B0; font-weight: 700;">Can I cancel my free trial at any time?</h6>
-                <p class="py-2 border-bottom" style="font-size: 16px; color: #1A3265;">
-                    Absolutely. All we ask is that you give FieldGroove a shot, <br>
-                    because it is rare that we can’t improve your business!
-                </p>
-
-            </div>
-        </div>
-        <div class="row justify-content-center">
-            <div class="col-12 col-lg-4">
-                <h6 style="color: #2E59B0; font-weight: 700;">How long is my free trial?</h6>
-                <p class="py-2 border-bottom" style="font-size: 16px; color: #1A3265;">The free trial is for 7 days.</p>
-
-            </div>
-            <div class="col-12 col-lg-4">
-                <h6 style="color: #2E59B0; font-weight: 700;">Can I cancel my free trial at any time?</h6>
-                <p class="py-2 border-bottom" style="font-size: 16px; color: #1A3265;">
-                    We have several resources (documents and videos) for<br>
-                    training. The portal has a button you can click to send <br>
-                    questions, and you will be assigned a personal point of <br>
-                    contact who will be available to assist as needed.
-                </p>
-
-            </div>
-        </div>
-        <div class="row justify-content-center mb-5">
-            <div class="col-12 col-lg-4">
-                <h6 style="color: #2E59B0; font-weight: 700;">
-                    Do you have customer representatives to answer<br>
-                    questions during my trial?
-                </h6>
-                <p class="py-2" style="font-size: 16px; color: #1A3265;">
-                    We have several resources (documents and videos) for<br>
-                    training. The portal has a button you can click to send <br>
-                    questions, and you will be assigned a personal point of <br>
-                    contact who will be available to assist as needed.
-                </p>
-            </div>
-            <div class="col-12 col-lg-4">
-                <h6 style="color: #2E59B0; font-weight: 700;">Can I cancel my free trial at any time?</h6>
-                <p class="py-2" style="font-size: 16px; color: #1A3265;">
-                    Typically, you’ll find that you can’t live without us! Before the<br>
-                    end of the trial, we will be providing you with a quote for <br>
-                    continuing the subscription. We will also be working closely <br>
-                    with you toward a seamless transition. After the initial 7 days <br>
-                    trial, with your acceptance of our quote and your approval,<br>
-                    we will start charging for the monthly subscription. We will <br>
-                    provide you with all the tools necessary for on-boarding as <br>
-                    well.
-
-            </div>
-        </div>
-        <div class="row mt-4 ">
-            <div class="col text-center ">
-                <ul class="mini-links d-inline-flex " style="list-style-type:none;">
-                    <li class="item ">
-
-                        <a href="" style="color: #162547;font-size: 14px;font-weight: 500;">
-                            FEATURES <span class="mx-3">|</span>
-                        </a>
+                <ul class="list-unstyled"
+                    style="color: #1B3365; font-weight: 500; letter-spacing: 0.05em; ">
+                    <li class="list-item mb-3">
+                        <img src="/Images/icon-item.png" />
+                        Managing the entire job cycle from lead creation to post-job <span class="ml-4">reporting</span>
                     </li>
+                    <li class="list-item ">
+                        <img src="~/Images/icon-item.png" /> Monitoring pipeline and backlog numbers, in real time
+                    </li>
+                    <li class="list-item my-3">
+                        <img src="~/Images/icon-item.png" />
+                        Building estimates for your prospects to review and accept <br><span class="ml-4">via email or on the job site</span>
+                    </li>
+                    <li class="list-item ">
+                        <img src="~/Images/icon-item.png" /> Keeping close track of your team, equipment, inventory, and <br>
+                        <span class="ml-4">jobs</span>
+                    </li>
+                    <li class="list-item my-3"> <img src="~/Images/icon-item.png" /> Automating scheduling and dispatching</li>
+                    <li class="list-item"> <img src="~/Images/icon-item.png" /> Preparing work orders and load tickets with one click</li>
 
-                    <li class="item ">
-                        <a href="" style="color: #162547;font-size: 14px;font-weight: 500;">
-                            FAQS <span class="mx-3">|</span>
-                        </a>
-                    </li>
-                    <li class="item ">
-                        <a href="" style="color: #162547;font-size: 14px;font-weight: 500;">
-                            CONTACT US <span class="mx-3">|</span>
-                        </a>
-                    </li>
-                    <li class="item">
-                        <a href="" style="color: #162547;font-size: 14px;font-weight: 500;">
-                            LOGIN <span class="mx-3">|</span>
-                        </a>
-                    </li>
-                    <li class="item ">
-                        <a href="" style="color: #162547;font-size: 14px;font-weight: 500;">SIGN UP </a>
-                    </li>
+
                 </ul>
             </div>
         </div>
+    </div>
 
-        <div class="footer p-5  " style="background-color:#162547">
-            <div class="row">
-                <div class="col-1">
+    <div class="card-footer  text-center p-5 mt-5"
+         style="background: #fff; border: #fff; font-size: 37px; color: #2e58af;">
+        Frequently Asked Questions
+    </div>
 
-                </div>
-                <div class="col-12 col-lg-6 mt-3 " style="font-size: 13px;
-          font-weight: 400; color: rgba(255, 255, 255, 0.5);">
-
-                    <img src="~/Images/logo-footer (1).jpg">
-                    <div class="mt-3">Copyright © FieldGroove, LLC 2022. All Rights Reserved.</div>
-                    <div class="my-2">716 Newman Springs Road, Suite 307 Lincroft, NJ 07738</div>
-                    <div><a href="" style="color: orangered;">Privacy Policy</a></div>
-                    </P>
-                </div>
-
-                <div class="col-12 col-lg-4 ml-5  mt-4 p-4" style="font-size: 13px;
-  font-weight: 400; color: rgba(255, 255, 255, 0.5);">
-                    <div class="mt-1">We would love to show you the power of FieldGroove.To setup</div>
-                    <div class="my-2">a demo or get an account setup, please contact us at</div>
-                    <a href="" style="color: orangered;">sales@fieldgroove.com</a>
-                    or by phone at <a href="" style="color: orangered;">212-537-0218</a>
-                    </P>
-                </div>
-            </div>
+    <div class="row justify-content-center">
+        <div class="col-12 col-lg-4">
+            <h6 style=" color: #2E59B0; font-weight: 700;">Will my card on file be charged?</h6>
+            <p class="py-2 border-bottom" style="font-size: 17px; color: #1A3265;">
+                We don’t charge anything at all before or during the trial <br>
+                period. The card on file is simply so we know you’re a<br>
+                person, not a robot.
+            </p>
 
         </div>
+        <div class="col-12 col-lg-4">
+            <h6 style="color: #2E59B0; font-weight: 700;">Can I cancel my free trial at any time?</h6>
+            <p class="py-2 border-bottom" style="font-size: 17px; color: #1A3265;">
+                Absolutely. All we ask is that you give FieldGroove a fair shot, <br>
+                because it is rare that we can’t improve your business!
+            </p>
+
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-12 col-lg-4">
+            <h6 style="color: #2E59B0; font-weight: 700;">How long is my free trial?</h6>
+            <p class="py-2 border-bottom" style="font-size: 17px; color: #1A3265;">The free trial is for 7 days.</p>
+
+        </div>
+        <div class="col-12 col-lg-4">
+            <h6 style="color: #2E59B0; font-weight: 700;">Can I cancel my free trial at any time?</h6>
+            <p class="py-2 border-bottom" style="font-size: 17px; color: #1A3265;">
+                We have several resources (documents and videos) for<br>
+                training. The portal has a button you can click to send instant<br>
+                questions, and you will be assigned a personal point of <br>
+                contact who will be available to assist as needed.
+            </p>
+
+        </div>
+    </div>
+    <div class="row justify-content-center mb-5">
+        <div class="col-12 col-lg-4">
+            <h6 style="color: #2E59B0; font-weight: 700;">
+                Do you have customer representatives to answer<br>
+                questions during my trial?
+            </h6>
+            <p class="py-2" style="font-size: 17px; color: #1A3265;">
+                We have several resources (documents and videos) for<br>
+                training. The portal has a button you can click to send instant<br>
+                questions, and you will be assigned a personal point of <br>
+                contact who will be available to assist as needed.
+            </p>
+        </div>
+        <div class="col-12 col-lg-4">
+            <h6 style="color: #2E59B0; font-weight: 700;">Can I cancel my free trial at any time?</h6>
+            <p class="py-2" style="font-size: 17px; color: #1A3265;">
+                Typically, you’ll find that you can’t live without us! Before the<br>
+                end of the trial, we will be providing you with a quote for <br>
+                continuing the subscription. We will also be working closely <br>
+                with you toward a seamless transition. After the initial 7 days <br>
+                trial, with your acceptance of our quote and your approval,<br>
+                we will start charging for the monthly subscription. We will <br>
+                provide you with all the tools necessary for on-boarding as <br>
+                well.
+
+        </div>
+    </div>
+    <div class="row mt-4 ">
+        <div class="col text-center ">
+            <ul class="mini-links d-inline-flex " style="list-style-type:none;">
+                <li class="item ">
+
+                    <a href="" style="color: #162547;font-size: 14px;font-weight: 500;">
+                        FEATURES <span class="mx-3">|</span>
+                    </a>
+                </li>
+
+                <li class="item ">
+                    <a href="" style="color: #162547;font-size: 14px;font-weight: 500;">
+                        FAQS <span class="mx-3">|</span>
+                    </a>
+                </li>
+                <li class="item ">
+                    <a href="" style="color: #162547;font-size: 14px;font-weight: 500;">
+                        CONTACT US <span class="mx-3">|</span>
+                    </a>
+                </li>
+                <li class="item">
+                    <a href="" style="color: #162547;font-size: 14px;font-weight: 500;">
+                        LOGIN <span class="mx-3">|</span>
+                    </a>
+                </li>
+                <li class="item ">
+                    <a href="" style="color: #162547;font-size: 14px;font-weight: 500;">SIGN UP </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="footer p-5  " style="background-color:#162547">
+        <div class="row">
+            <div class="col-1">
+
+            </div>
+            <div class="col-12 col-lg-6 mt-3 " style="font-size: 13px;
+          font-weight: 400; color: rgba(255, 255, 255, 0.5);">
+
+                <img src="~/Images/logo-footer (1).jpg">
+                <div class="mt-3">Copyright © FieldGroove, LLC 2022. All Rights Reserved.</div>
+                <div class="my-2">716 Newman Springs Road, Suite 307 Lincroft, NJ 07738</div>
+                <div><a href="" style="color: orangered;">Privacy Policy</a></div>
+                </P>
+            </div>
+
+            <div class="col-12 col-lg-4 ml-5 mt-  p-4" style="font-size: 13px;
+  font-weight: 400; color: rgba(255, 255, 255, 0.5);">
+                <div class="mt-1">We would love to show you the power of FieldGroove.To setup</div>
+                <div class="my-2">a demo or get an account setup, please contact us at</div>
+                <a href="" style="color: orangered;">sales@fieldgroove.com</a>
+                or by phone at <a href="" style="color: orangered;">212-537-0218</a>
+                </P>
+            </div>
+        </div>
+
+    </div>
 
 
 
 
 
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <script type="text/javascript">
+
+    <script type="text/javascript">
 
         const togglePassword = document.querySelector('#togglePassword');
         const password = document.querySelector('#Password');
@@ -780,7 +795,7 @@
                     success: function (da) {
 
                         alert(JSON.stringify(da));
-                        
+
 
                     },
 
@@ -794,7 +809,7 @@
 
 
 
-        </script>
+    </script>
 </body>
 
 </html>

@@ -20,9 +20,9 @@ namespace Core_Field.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            _logger.LogInformation("Hello world");
+            return View(_logger);
         }
-
         public IActionResult Privacy()
         {
             return View();
